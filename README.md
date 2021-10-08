@@ -1,3 +1,7 @@
+#This repo has moved
+- https://github.com/inspec/inspec-k8s
+- Also the default branch has been changed to `main`.
+
 # InSpec Kubernetes Resource Pack
 
 This InSpec resource pack provides InSpec helpers to validate the spec of any object/resource inside Kubernetes.
@@ -52,3 +56,6 @@ If you run into issues installing via `inspec plugin install train-kubernetes`, 
 * Ensure the `~/.inspec/plugins.json` has `"0.1.3"` and not `"= 0.1.3"` for the `version` value.  Modify it by hand if needed.
 * Ensure you can cleanly install the `k8s-client` gem version `0.10.4` or greater.  e.g. `gem install k8s-client -v 0.10.4`
 * Ensure that only one version of the `excon` gem is installed.  e.g. `gem list | grep excon`.  If you see two versions, `gem uninstall excon` and remove the older version.
+
+## Maintainers
+Currently maintained by Chef Software, Inc. Originally created by [Brad Geesaman](https://github.com/bgeesaman).
