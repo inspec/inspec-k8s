@@ -52,7 +52,7 @@ module Validators
   # @param required [Array] The list of required parameters.
   # @param require_any_of [Array] The list of parameters that at least one of them are required.
   def self.validate_parameters(resource_name: nil, allow: [], required: nil, require_any_of: nil, opts: {}, skip_length: false) # rubocop:disable Metrics/ParameterLists
-    raise ArgumentError, "Parameters must be provided with as a Hash object. Provided #{opts.class}" unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided as a Hash object. Provided #{opts.class}" unless opts.is_a?(Hash)
     if required
       allow += Validators.validate_params_required(resource_name, required, opts)
     end
