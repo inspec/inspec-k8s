@@ -3,9 +3,11 @@
 require 'rake/testtask'
 require 'rubocop/rake_task'
 
-# run tests
 desc 'default checks'
 task default: [:lint]
+
+desc 'Testing tasks'
+task test: %w[test:unit]
 
 # Rubocop
 desc 'Run Rubocop lint checks'
@@ -28,4 +30,15 @@ begin
   end
 rescue LoadError
   puts '>>>>> GitHub Changelog Generator not loaded, omitting tasks'
+end
+
+namespace :test do
+  # Minitest
+  Rake::TestTask.new(:unit) do |t|
+    t.libs << 'test/unit'
+    t.libs << 'libraries'
+    t.verbose = true
+    t.warning = false
+    t.test_files = Rake::FileList['test/unit/**/*_test.rb']
+  end
 end
