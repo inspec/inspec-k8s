@@ -53,12 +53,9 @@ module Validators
   # @param require_any_of [Array] The list of parameters that at least one of them are required.
   def self.validate_parameters(resource_name: nil, allow: [], required: nil, require_any_of: nil, opts: {}, skip_length: false) # rubocop:disable Metrics/ParameterLists
     raise ArgumentError, "Parameters must be provided as a Hash object. Provided #{opts.class}" unless opts.is_a?(Hash)
-    if required
-      allow += Validators.validate_params_required(resource_name, required, opts)
-    end
-    if require_any_of
-      allow += Validators.validate_params_require_any_of(resource_name, require_any_of, opts)
-    end
+
+    allow += Validators.validate_params_required(resource_name, required, opts) if required
+    allow += Validators.validate_params_require_any_of(resource_name, require_any_of, opts) if require_any_of
     Validators.validate_params_allow(allow, opts, skip_length)
     true
   end
@@ -69,9 +66,8 @@ module Validators
     # At least one of them has to exist.
     Validators.validate_params_require_any_of(resource_name, require_only_one_of, opts)
     provided = require_only_one_of.select { |i| opts.key?(i) }
-    if provided.size > 1
-      raise ArgumentError, "Either one of #{require_only_one_of} is required. Provided: #{provided}."
-    end
+    raise ArgumentError, "Either one of #{require_only_one_of} is required. Provided: #{provided}." if provided.size > 1
+
     # There should be only one parameter at this point.
     provided.first
   end
@@ -79,14 +75,26 @@ module Validators
   # @return [Array] Required parameters
   # @param required [Array]
   def self.validate_params_required(resource_name = nil, required, opts)
-    raise ArgumentError, "#{resource_name}: `#{required.uniq - opts.keys.uniq}` must be provided" unless opts.is_a?(Hash) && required.all? { |req| opts.key?(req) && !opts[req].nil? && opts[req] != '' }
+    unless opts.is_a?(Hash) && required.all? do |req|
+             opts.key?(req) && !opts[req].nil? && opts[req] != ''
+           end
+      raise ArgumentError,
+            "#{resource_name}: `#{required.uniq - opts.keys.uniq}` must be provided"
+    end
+
     required
   end
 
   # @return [Array] Require any of parameters
   # @param require_any_of [Array]
   def self.validate_params_require_any_of(resource_name = nil, require_any_of, opts)
-    raise ArgumentError, "#{resource_name}: One of `#{require_any_of}` must be provided." unless opts.is_a?(Hash) && require_any_of.any? { |req| opts.key?(req) && !opts[req].nil? && opts[req] != '' }
+    unless opts.is_a?(Hash) && require_any_of.any? do |req|
+             opts.key?(req) && !opts[req].nil? && opts[req] != ''
+           end
+      raise ArgumentError,
+            "#{resource_name}: One of `#{require_any_of}` must be provided."
+    end
+
     require_any_of
   end
 
@@ -94,13 +102,19 @@ module Validators
   # @param allow [Array]
   def self.validate_params_allow(allow, opts, skip_length = false) # rubocop:disable Style/OptionalBooleanParameter TODO: Fix this.
     if !opts[:resource_data] && !skip_length
-      raise ArgumentError, 'Arguments or values can not be longer than 500 characters.' if opts.any? { |k, v| k.size > 100 || v.to_s.size > 500 } # rubocop:disable Style/SoleNestedConditional TODO: Fix this.
+      raise ArgumentError, 'Arguments or values can not be longer than 500 characters.' if # rubocop:disable Style/SoleNestedConditional TODO: Fix this.
+opts.any? do |k, v|
+  k.size > 100 || v.to_s.size > 500
+end
     end
     raise ArgumentError, 'Scalar arguments not supported.' unless defined?(opts.keys)
-    raise ArgumentError, "Unexpected arguments found: #{opts.keys.uniq - allow.uniq}" unless opts.keys.all? { |a| allow.include?(a) }
+    raise ArgumentError, "Unexpected arguments found: #{opts.keys.uniq - allow.uniq}" unless opts.keys.all? do |a|
+                                                                                               allow.include?(a)
+                                                                                             end
     raise ArgumentError, 'Provided parameter should not be empty.' unless opts.values.all? do |a|
       return true if a.instance_of?(Integer)
       return true if [TrueClass, FalseClass].include?(a.class)
+
       !a.empty?
     end
   end

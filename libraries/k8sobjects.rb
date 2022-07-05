@@ -9,12 +9,12 @@ module Inspec
       desc 'Gets a list of a given type of Kubernetes Object'
 
       example "
-        describe k8sobjects(api: 'v1', type: 'pods', namespace: 'default', 
+        describe k8sobjects(api: 'v1', type: 'pods', namespace: 'default',
                             labelSelector: 'run=nginx') do
           it { should exist }
           ...
         end
-        describe k8sobjects(api: 'v1', type: 'namespaces', 
+        describe k8sobjects(api: 'v1', type: 'namespaces',
                             labelSelector: 'myns=prod') do
           it { should exist }
           ...
@@ -47,19 +47,20 @@ module Inspec
         return [] unless @k8sobjects
 
         @k8sobjects.map do |obj|
-          if !obj.metadata.namespace.nil?
-            obj_rows += [{ name: obj.metadata.name,
+          obj_rows += if !obj.metadata.namespace.nil?
+                        [{ name: obj.metadata.name,
                            namespace: obj.metadata.namespace }]
-          else
-            obj_rows += [{ name: obj.metadata.name }]
-          end
+                      else
+                        [{ name: obj.metadata.name }]
+                      end
         end
         @table = obj_rows
       end
 
       def getobjects
         if !@objnamespace.nil?
-          @k8sobjects = @k8s.client.api(@objapi).resource(@objtype, namespace: @objnamespace).list(labelSelector: @objlabelSelector)
+          @k8sobjects = @k8s.client.api(@objapi).resource(@objtype,
+                                                          namespace: @objnamespace).list(labelSelector: @objlabelSelector)
         else
           @k8sobjects = @k8s.client.api(@objapi).resource(@objtype).list(labelSelector: @objlabelSelector)
         end
