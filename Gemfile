@@ -5,7 +5,6 @@ source 'https://rubygems.org'
 gem 'bundle'
 gem 'inspec-bin'
 
-
 group :development, :test do
   gem 'github_changelog_generator'
   gem 'minitest'
