@@ -18,11 +18,9 @@ module Inspec
       attr_reader :k8sobject
 
       def initialize(opts = {})
-        Validators.validate_params_required(@__resource_name__, [:namespace], opts)
         @objtype = 'configmap'
         super(opts)
       end
     end
   end
 end
-
