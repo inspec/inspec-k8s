@@ -2,13 +2,13 @@
 title = "k8s_pod resource"
 draft = false
 gh_repo = "inspec"
-platform = "aws"
+platform = "k8s"
 
 [menu]
   [menu.inspec]
     title = "k8s_pod"
-    identifier = "inspec/resources/aws/K8s Pod"
-    parent = "inspec/resources/aws"
+    identifier = "inspec/resources/k8s/K8s Pod"
+    parent = "inspec/resources/k8s"
 +++
 
 

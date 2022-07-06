@@ -2,13 +2,13 @@
 title = "k8s_config_map resource"
 draft = false
 gh_repo = "inspec"
-platform = "aws"
+platform = "k8s"
 
 [menu]
   [menu.inspec]
     title = "k8s_config_map"
-    identifier = "inspec/resources/aws/K8s Config Map"
-    parent = "inspec/resources/aws"
+    identifier = "inspec/resources/k8s/K8s Config Map"
+    parent = "inspec/resources/k8s"
 +++
 
 

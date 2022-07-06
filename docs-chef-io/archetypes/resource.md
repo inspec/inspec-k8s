@@ -2,13 +2,13 @@
 title = "{{ .Name }} resource"
 draft = false
 gh_repo = "inspec"
-platform = "aws"
+platform = "k8s"
 
 [menu]
   [menu.inspec]
-    title = "{{ .Name }}"
-    identifier = "inspec/resources/aws/{{ .Name | humanize | title }}"
-    parent = "inspec/resources/aws"
+    title = "{{ .Name | humanize | title }}"
+    identifier = "inspec/resources/k8s/{{ .Name | humanize | title }}"
+    parent = "inspec/resources/k8s"
 +++
 {{/* Run `hugo new -k resource inspec/resources/RESOURCE_NAME.md` to generate a new resource page. */}}
 

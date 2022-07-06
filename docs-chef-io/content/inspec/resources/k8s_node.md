@@ -2,13 +2,13 @@
 title = "k8s_node resource"
 draft = false
 gh_repo = "inspec"
-platform = "aws"
+platform = "k8s"
 
 [menu]
   [menu.inspec]
     title = "k8s_node"
-    identifier = "inspec/resources/aws/K8s Node"
-    parent = "inspec/resources/aws"
+    identifier = "inspec/resources/k8s/K8s Node"
+    parent = "inspec/resources/k8s"
 +++
 
 
