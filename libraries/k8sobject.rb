@@ -2,6 +2,7 @@
 
 require 'k8s_backend'
 require 'pry'
+require 'active_support/core_ext/module/delegation'
 
 module Inspec::Resources
   class K8sObject < ::K8sResourceBase
@@ -39,6 +40,11 @@ module Inspec::Resources
                      end
       end
     end
+
+    delegate :kind, :metadata, to: :resource
+    delegate :uid, :name, :namespace, :resourceVersion , to: :metadata
+
+    alias resource_version resourceVersion
 
     def item
       @k8sobject
@@ -81,10 +87,6 @@ module Inspec::Resources
       @display_name.to_s
     end
 
-    def name
-      @k8sobject.metadata.name unless @k8sobject.metadata.name.nil?
-    end
-
     def include?(key)
       @k8sobject.key?(key)
     end
@@ -92,5 +94,9 @@ module Inspec::Resources
     def running?
       @k8sobject.status.phase == 'Running' unless @k8sobject.status.phase.nil?
     end
+
+    private
+
+    alias resource k8sobject # TODO: remove later
   end
 end
