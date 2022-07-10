@@ -1,5 +1,5 @@
 require_relative '../../test_helper'
-require 'k8sobject'
+require 'k8sobjects'
 
 class K8sObjectsConstructorTest < Minitest::Test
   def test_empty_param_not_ok
