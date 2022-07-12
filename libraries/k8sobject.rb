@@ -42,7 +42,7 @@ module Inspec::Resources
     end
 
     delegate :kind, :metadata, to: :resource
-    delegate :uid, :name, :namespace, :resourceVersion , to: :metadata
+    delegate :uid, :name, :namespace, :resourceVersion, :labels, :annotations,  to: :metadata
 
     alias resource_version resourceVersion
 
