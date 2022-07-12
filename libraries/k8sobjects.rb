@@ -33,28 +33,19 @@ module Inspec
 
       # FilterTable setup
       filter_table_config = FilterTable.create
-      filter_table_config.add(:name, field: :name)
-      filter_table_config.add(:namespace, field: :namespace)
+      %i[name namespace kind uid resource_version labels annotations].each do |field|
+        filter_table_config.add(field, field: field.to_s.pluralize)
+      end
       filter_table_config.connect(self, :fetch_data)
 
       def fetch_data
-        obj_rows = []
-
         catch_k8s_errors do
           getobjects
         end
 
         return [] unless @k8sobjects
 
-        @k8sobjects.map do |obj|
-          obj_rows += if !obj.metadata.namespace.nil?
-                        [{ name: obj.metadata.name,
-                           namespace: obj.metadata.namespace }]
-                      else
-                        [{ name: obj.metadata.name }]
-                      end
-        end
-        @table = obj_rows
+        @table = @k8sobjects.map { |obj| obj.metadata.to_h }
       end
 
       def getobjects
