@@ -13,7 +13,7 @@ class K8sResourceBase < Inspec.resource(1)
 
   def initialize(opts)
     @opts = opts
-    @k8s = inspec.backend
+    @k8s = opts[:backend] || inspec.backend
     @count = item.length if item.respond_to? :length
   end
 
@@ -25,17 +25,17 @@ class K8sResourceBase < Inspec.resource(1)
   def catch_k8s_errors
     yield
     # create custom messages as needed
-  rescue K8s::Error::Conflict => e
+  rescue ::K8s::Error::Conflict => e
     error = JSON.parse(e.body)
     fail_resource error['error']['message']
     @failed_resource = true
     nil
-  rescue K8s::Error::NotFound => e
+  rescue ::K8s::Error::NotFound => e
     error = JSON.parse(e.body)
     fail_resource error['error']['message']
     @failed_resource = true
     nil
-  rescue Excon::Error::Socket => e
+  rescue ::Excon::Error::Socket => e
     error = JSON.parse(e.body)
     fail_resource error['error']['message']
     @failed_resource = true
