@@ -24,7 +24,7 @@ module Mock
       def get(name = nil)
         raise ArgumentError if raise_errors && !name
 
-        current_data[name]
+        current_data.select{|data| data[name] }
       end
 
       # @note expand it if we need stubs specifically for any attributes like labels
