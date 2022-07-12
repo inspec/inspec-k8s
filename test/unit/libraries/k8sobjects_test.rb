@@ -28,27 +28,27 @@ class K8sObjectsTest < Minitest::Test
   @k8s_objects = Inspec::Resources::K8sObjects.new(
     backend: Mock::K8s::Transport.new(stub_data: stub_data)
   )
-  def test_uid
+  def test_uids
     assert_includes('abcd1234', @k8s_objects.uids)
   end
 
-  def test_name
+  def test_names
     assert_includes('pod1', @k8s_objects.names)
   end
 
-  def test_namespace
+  def test_namespaces
     assert_includes('default', @k8s_objects.namespaces)
   end
 
-  def test_kind
+  def test_kinds
     assert_includes('pod', @k8s_objects.kinds)
   end
 
-  def test_metadata
+  def test_metadatas
     refute_empty(@k8s_objects.metadatas)
   end
 
-  def test_resource_version
+  def test_resource_versions
     assert_includes(1234, @k8s_objects.resource_versions)
   end
 
@@ -56,7 +56,7 @@ class K8sObjectsTest < Minitest::Test
     assert_empty(@k8s_objects.labels)
   end
 
-  def annotations
+  def test_annotations
     assert_empty(@k8s_objects.annotations)
   end
 end
