@@ -1,25 +1,25 @@
 +++
-title = "k8s_pod resource"
+title = "k8s_pods resource"
 draft = false
 gh_repo = "inspec"
 platform = "k8s"
 
 [menu]
 [menu.inspec]
-title = "k8s_pod"
-identifier = "inspec/resources/k8s/K8s Pod"
+title = "k8s_pods"
+identifier = "inspec/resources/k8s/K8s Pods"
 parent = "inspec/resources/k8s"
 +++
 
 
-Use the `k8s_pod` Chef InSpec audit resource to test the configuration of specific Pods in a namespace
+Use the `k8s_pods` Chef InSpec audit resource to test the configuration of all Pods in a namespace
 
 ## Installation
 
 ## Syntax
 
 ```ruby
-describe k8s_pods(namespace: "NAMESPACE", name: "NAME") do
+describe k8s_pods do
   #...
 end
 ```
@@ -54,18 +54,22 @@ end
 
 ## Examples
 
-**The pod for default namespaces should exist**
+**The pods for default namespaces should exist**
 
 ```ruby
- describe k8s_pod(name: 'NAME') do
+ describe k8s_pods do
   it { should exist }
 end
 ```
 
-**The pod should for given namespace exist**
+**The pods should for given namespace exist**
 
 ```ruby
-describe k8s_pod(namespace: 'NAMESPACE', name: 'NAME') do
+describe k8s_pods(namespace: 'kube-system') do
   it { should exist }
 end
 ```
+
+## Matchers
+
+{{% inspec/inspec_matchers_link %}}
