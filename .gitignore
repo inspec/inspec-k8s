@@ -1,1 +1,10 @@
 inspec.lock
+.bundle
+.idea
+.env
+dev/
+.ruby-version
+.rakeTasks
+.DS_Store
+coverage
+Gemfile.lock

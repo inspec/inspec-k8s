@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'k8s_backend'
+require 'active_support/core_ext/string'
 
 module Inspec
   module Resources
@@ -9,12 +10,12 @@ module Inspec
       desc 'Gets a list of a given type of Kubernetes Object'
 
       example "
-        describe k8sobjects(api: 'v1', type: 'pods', namespace: 'default', 
+        describe k8sobjects(api: 'v1', type: 'pods', namespace: 'default',
                             labelSelector: 'run=nginx') do
           it { should exist }
           ...
         end
-        describe k8sobjects(api: 'v1', type: 'namespaces', 
+        describe k8sobjects(api: 'v1', type: 'namespaces',
                             labelSelector: 'myns=prod') do
           it { should exist }
           ...
@@ -33,33 +34,25 @@ module Inspec
 
       # FilterTable setup
       filter_table_config = FilterTable.create
-      filter_table_config.add(:name, field: :name)
-      filter_table_config.add(:namespace, field: :namespace)
+      %i[name namespace kind uid resource_version labels annotations].each do |field|
+        filter_table_config.add(field, field: field.to_s.pluralize)
+      end
       filter_table_config.connect(self, :fetch_data)
 
       def fetch_data
-        obj_rows = []
-
         catch_k8s_errors do
           getobjects
         end
 
         return [] unless @k8sobjects
 
-        @k8sobjects.map do |obj|
-          if !obj.metadata.namespace.nil?
-            obj_rows += [{ name: obj.metadata.name,
-                           namespace: obj.metadata.namespace }]
-          else
-            obj_rows += [{ name: obj.metadata.name }]
-          end
-        end
-        @table = obj_rows
+        @table = @k8sobjects.map { |obj| obj.metadata.to_h }
       end
 
       def getobjects
         if !@objnamespace.nil?
-          @k8sobjects = @k8s.client.api(@objapi).resource(@objtype, namespace: @objnamespace).list(labelSelector: @objlabelSelector)
+          @k8sobjects = @k8s.client.api(@objapi).resource(@objtype,
+                                                          namespace: @objnamespace).list(labelSelector: @objlabelSelector)
         else
           @k8sobjects = @k8s.client.api(@objapi).resource(@objtype).list(labelSelector: @objlabelSelector)
         end
