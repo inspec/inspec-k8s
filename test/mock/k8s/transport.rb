@@ -1,4 +1,7 @@
 # Mock for K8s API Client / Transport
+require 'ostruct'
+require 'json'
+
 module Mock
   module K8s
     class Transport
@@ -13,7 +16,7 @@ module Mock
       #         }
       #       }
       def initialize(stub_data: {}, raise_errors: true)
-        @stub_data = stub_data
+        @stub_data = JSON.parse(stub_data.to_json, object_class: OpenStruct)
         @api_version = 'v1'
         @type = nil
         @namespace = 'default'
@@ -24,7 +27,7 @@ module Mock
       def get(name = nil)
         raise ArgumentError if raise_errors && !name
 
-        current_data.select{|data| data[name] }
+        current_data.select { |data| data[name] }.first
       end
 
       # @note expand it if we need stubs specifically for any attributes like labels
@@ -56,7 +59,7 @@ module Mock
       attr_reader :stub_data, :api_version, :type, :namespace, :raise_errors
 
       def current_data
-        stub_data.dig(api_version, namespace, type) || {}
+        stub_data.send(api_version).send(namespace).send(type) || {}
       end
     end
   end
