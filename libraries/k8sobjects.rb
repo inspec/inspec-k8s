@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'k8s_backend'
+require 'active_support/core_ext/string'
 
 module Inspec
   module Resources
