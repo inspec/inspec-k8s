@@ -5,7 +5,7 @@ require 'pry'
 require 'active_support/core_ext/module/delegation'
 
 module Inspec::Resources
-  class K8sObject < ::K8sResourceBase
+  class K8sObject < K8sResourceBase
     name 'k8sobject'
     desc 'Verifies settings for a single resource'
 
@@ -42,7 +42,7 @@ module Inspec::Resources
     end
 
     delegate :kind, :metadata, to: :resource
-    delegate :uid, :name, :namespace, :resourceVersion, :labels, :annotations,  to: :metadata
+    delegate :uid, :name, :namespace, :resourceVersion, :labels, :annotations, to: :metadata
 
     alias resource_version resourceVersion
 
@@ -94,8 +94,6 @@ module Inspec::Resources
     def running?
       @k8sobject.status.phase == 'Running' unless @k8sobject.status.phase.nil?
     end
-
-    private
 
     alias resource k8sobject # TODO: remove later
   end
