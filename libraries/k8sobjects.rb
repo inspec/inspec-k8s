@@ -22,12 +22,22 @@ module Inspec
         end
       "
 
-      # FilterTable setup
-      filter_table_config = FilterTable.create
-      %i[name namespace kind uid resource_version labels annotations].each do |field|
-        filter_table_config.register_column(field.to_s.underscore.pluralize, field: field)
+      # Populate the FilterTable.
+      # replicated from https://github.com/inspec/inspec-azure/blob/main/libraries/azure_generic_resources.rb#L113
+      # FilterTable is a class bound object so is this method.
+      # @param raw_data [Symbol] Method name of the table with raw data.
+      # @param table_scheme [Array] [{column: :blahs, field: :blah}, {..}]
+      def self.populate_filter_table(raw_data, table_scheme)
+        filter_table = FilterTable.create
+        table_scheme.each do |col_field|
+          opts = { field: col_field[:field] }
+          opts[:style] = col_field[:style] if col_field[:style]
+          filter_table.register_column(col_field[:column], opts)
+        end
+        filter_table.install_filter_methods_on_resource(self, raw_data)
       end
-      filter_table_config.install_filter_methods_on_resource(self, :fetch_data)
+
+      attr_reader :k8sobject, :table
 
       def initialize(opts = {})
         # Call the parent class constructor
