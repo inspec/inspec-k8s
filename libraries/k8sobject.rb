@@ -4,97 +4,100 @@ require 'k8s_backend'
 require 'pry'
 require 'active_support/core_ext/module/delegation'
 
-module Inspec::Resources
-  class K8sObject < K8sResourceBase
-    name 'k8sobject'
-    desc 'Verifies settings for a single resource'
+module Inspec
+  module Resources
+    class K8sObject < K8sResourceBase
+      DEFAULT_NAMESPACE = 'default'
+      name 'k8sobject'
+      desc 'Verifies settings for a single resource'
 
-    example "
+      example "
       describe k8sobject(api: 'v1', type: 'pod', namespace: 'default', name: 'my-pod') do
         it { should exist }
         its('name') { should eq 'my-pod' }
         ...
       end
     "
-    attr_reader :k8sobject
+      attr_reader :k8sobject
 
-    def initialize(opts = {})
-      # Call the parent class constructor
-      super(opts)
+      def initialize(opts = {})
+        # Call the parent class constructor
+        super(opts)
 
-      @objapi = opts[:api] if opts[:api] ||= 'v1'
-      @objtype = opts[:type] if opts[:type] ||= nil
-      @objname = opts[:name] if opts[:name] ||= nil
-      @objnamespace = opts[:namespace] if opts[:namespace] ||= nil
+        @objapi = opts[:api] if opts[:api] ||= 'v1'
+        @objtype = opts[:type] if opts[:type] ||= nil
+        @objname = opts[:name] if opts[:name] ||= nil
+        @objnamespace = opts[:namespace] ||= self.class::DEFAULT_NAMESPACE
 
-      @display_name = if !@objnamespace.nil?
-                        "#{@objnamespace}/#{@objname}"
-                      else
-                        @objname.to_s
-                      end
-      catch_k8s_errors do
-        @k8sobject = if !@objnamespace.nil?
-                       @k8s.client.api(@objapi).resource(@objtype, namespace: @objnamespace).get(@objname)
-                     else
-                       @k8s.client.api(@objapi).resource(@objtype).get(@objname)
-                     end
-      end
-    end
-
-    delegate :kind, :metadata, to: :resource
-    delegate :uid, :name, :namespace, :resourceVersion, :labels, :annotations, to: :metadata
-
-    alias resource_version resourceVersion
-
-    def item
-      @k8sobject
-    end
-
-    def container_names
-      if @k8sobject.respond_to?(:spec) && @k8sobject.spec.respond_to?(:containers) && @k8sobject.spec.containers.respond_to?(:name)
-        @k8sobject.spec.containers.map do |c|
-          c.name
+        @display_name = if !@objnamespace.nil?
+                          "#{@objnamespace}/#{@objname}"
+                        else
+                          @objname.to_s
+                        end
+        catch_k8s_errors do
+          @k8sobject = if !@objnamespace.nil?
+                         @k8s.client.api(@objapi).resource(@objtype, namespace: @objnamespace).get(@objname)
+                       else
+                         @k8s.client.api(@objapi).resource(@objtype).get(@objname)
+                       end
         end
       end
-    end
 
-    def container_images
-      @k8sobject.spec.containers.map { |c| c.image } unless @k8sobject.spec.containers.nil?
-    end
+      delegate :kind, :metadata, to: :resource
+      delegate :uid, :name, :namespace, :resourceVersion, :labels, :annotations, :creationTimestamp, to: :metadata
 
-    def has_latest_container_tag?
-      if @k8sobject.respond_to?(:spec) && @k8sobject.spec.respond_to?(:containers)
-        @k8sobject.spec.containers.map { |c| c.image }.each do |i|
-          return true if i =~ /^.*:latest$/
+      alias resource_version resourceVersion
+
+      def item
+        @k8sobject
+      end
+
+      def container_names
+        if @k8sobject.respond_to?(:spec) && @k8sobject.spec.respond_to?(:containers) && @k8sobject.spec.containers.respond_to?(:name)
+          @k8sobject.spec.containers.map do |c|
+            c.name
+          end
         end
       end
-      false
-    end
 
-    def has_label?(objlabel = nil)
-      if @k8sobject.respond_to?(:metadata) && @k8sobject.metadata.respond_to?(:labels) && @k8sobject.metadata.labels.respond_to?(objlabel) && !@k8sobject.metadata.labels[objlabel].nil?
-        return true
+      def container_images
+        @k8sobject.spec.containers.map { |c| c.image } unless @k8sobject.spec.containers.nil?
       end
 
-      false
-    end
+      def has_latest_container_tag?
+        if @k8sobject.respond_to?(:spec) && @k8sobject.spec.respond_to?(:containers)
+          @k8sobject.spec.containers.map { |c| c.image }.each do |i|
+            return true if i =~ /^.*:latest$/
+          end
+        end
+        false
+      end
 
-    def exists?
-      !@k8sobject.nil?
-    end
+      def has_label?(objlabel = nil)
+        if @k8sobject.respond_to?(:metadata) && @k8sobject.metadata.respond_to?(:labels) && @k8sobject.metadata.labels.respond_to?(objlabel) && !@k8sobject.metadata.labels[objlabel].nil?
+          return true
+        end
 
-    def to_s
-      @display_name.to_s
-    end
+        false
+      end
 
-    def include?(key)
-      @k8sobject.key?(key)
-    end
+      def exists?
+        !@k8sobject.nil?
+      end
 
-    def running?
-      @k8sobject.status.phase == 'Running' unless @k8sobject.status.phase.nil?
-    end
+      def to_s
+        @display_name.to_s
+      end
 
-    alias resource k8sobject # TODO: remove later
+      def include?(key)
+        @k8sobject.key?(key)
+      end
+
+      def running?
+        @k8sobject.status.phase == 'Running' unless @k8sobject.status.phase.nil?
+      end
+
+      alias resource k8sobject # TODO: remove later
+    end
   end
 end
