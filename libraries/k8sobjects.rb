@@ -37,6 +37,8 @@ module Inspec
         @objname = opts[:name] if opts[:name] ||= nil
         @objnamespace = opts[:namespace] if opts[:namespace] ||= nil
         @objlabelSelector = opts[:labelSelector] if opts[:labelSelector] ||= nil
+        fetch_data
+        populate_filter_table_from_response
       end
 
       def fetch_data
@@ -46,14 +48,7 @@ module Inspec
 
         return [] unless @k8sobjects
 
-        @table = @k8sobjects.map do |obj|
-          hash = obj.to_h
-          hash[:status] = hash[:status].to_h
-          hash.merge!(obj.metadata.to_h.transform_keys { |key| key.to_s.underscore.to_sym })
-          hash[:labels] = obj.metadata.labels&.map(&:to_h)
-          hash[:annotations] = obj.metadata.annotations&.map(&:to_h)
-          hash
-        end
+        @table = build_table
       end
 
       def getobjects
