@@ -1,7 +1,3 @@
-# This repo has moved
-- https://github.com/inspec/inspec-k8s
-- Also the default branch has been changed to `main`.
-
 # InSpec Kubernetes Resource Pack
 
 This InSpec resource pack provides InSpec helpers to validate the spec of any object/resource inside Kubernetes.
