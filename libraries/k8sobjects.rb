@@ -50,12 +50,12 @@ module Inspec
       end
 
       def getobjects
-        if !@objnamespace.nil?
-          @k8sobjects = @k8s.client.api(@objapi).resource(@objtype,
+        @k8sobjects = if !@objnamespace.nil?
+                        @k8s.client.api(@objapi).resource(@objtype,
                                                           namespace: @objnamespace).list(labelSelector: @objlabelSelector)
-        else
-          @k8sobjects = @k8s.client.api(@objapi).resource(@objtype).list(labelSelector: @objlabelSelector)
-        end
+                      else
+                        @k8s.client.api(@objapi).resource(@objtype).list(labelSelector: @objlabelSelector)
+                      end
       end
 
       def items
