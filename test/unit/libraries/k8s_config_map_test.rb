@@ -24,8 +24,9 @@ class K8sConfigMapTest < ResourceTest
       }
     }
   }
-  TYPE = 'configmaps'
-  
+  NAME = 'configmap1'.freeze
+  TYPE = 'configmaps'.freeze
+
   def test_uid
     assert_equal('abcd1234', k8s_object.uid)
   end
@@ -40,10 +41,6 @@ class K8sConfigMapTest < ResourceTest
 
   def test_kind
     assert_equal('configmap', k8s_object.kind)
-  end
-
-  def test_metadata
-    refute_empty(k8s_object.metadata)
   end
 
   def test_resource_version

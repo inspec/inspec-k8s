@@ -4,7 +4,7 @@ class K8sConfigMapsConstructorTest < ResourceTest
   STUB_DATA = {
     'v1': {
       default: {
-        pods: [
+        configmaps: [
           {
             name: 'configmap1',
             kind: 'configmap',
@@ -24,38 +24,33 @@ class K8sConfigMapsConstructorTest < ResourceTest
       }
     }
   }
-  TYPE = 'configmaps'
+  TYPE = 'configmaps'.freeze
 
   def test_uids
-    assert_includes('abcd1234', k8s_objects.uids)
+    assert_includes(k8s_objects.uids, 'abcd1234')
   end
 
   def test_names
-    assert_includes('configmap1', k8s_objects.names)
+    assert_includes(k8s_objects.names, 'configmap1')
   end
 
   def test_namespaces
-    assert_includes('default', k8s_objects.namespaces)
+    assert_includes(k8s_objects.namespaces, 'default')
   end
 
   def test_kinds
-    assert_includes('configmap', k8s_objects.kinds)
-  end
-
-  def test_metadatas
-    refute_empty(k8s_objects.metadatas)
+    assert_includes(k8s_objects.kinds, 'configmap')
   end
 
   def test_resource_versions
-    assert_includes(1234, k8s_objects.resource_versions)
+    assert_includes(k8s_objects.resource_versions, 1234)
   end
 
   def test_labels
-    assert_empty(k8s_objects.labels)
+    assert_empty(k8s_objects.labels.flatten)
   end
 
   def test_annotations
-    assert_empty(k8s_objects.annotations)
+    assert_empty(k8s_objects.annotations.flatten)
   end
 end
-
