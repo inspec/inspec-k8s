@@ -25,7 +25,8 @@ class K8sPodTest < ResourceTest
     }
   }
 
-  TYPE = 'pods'
+  TYPE = 'pods'.freeze
+  NAME = 'pod1'.freeze
 
   def test_uid
     assert_equal('abcd1234', k8s_object.uid)
