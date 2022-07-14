@@ -15,11 +15,16 @@ module Inspec
         ...
       end
     "
-      attr_reader :k8sobject
 
       def initialize(opts = {})
-        @objtype = 'configmap'
+        opts[:type] = 'configmaps'
         super(opts)
+      end
+
+      private
+
+      def build_record_from(obj)
+        super.merge!(data: obj.data.to_h)
       end
     end
   end
