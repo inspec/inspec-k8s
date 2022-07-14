@@ -5,8 +5,8 @@ require 'k8sobjects'
 module Inspec
   module Resources
     class K8sPods < K8sObjects
-      name 'k8s_config_maps'
-      desc 'Verifies settings for all config maps'
+      name 'k8s_pods'
+      desc 'Verifies settings for all pods'
 
       example "
       describe k8s_pods(namespace: 'default') do
@@ -17,7 +17,7 @@ module Inspec
     "
 
       def initialize(opts = {})
-        @objtype = 'pods'
+        opts[:type] = 'pods'
         super(opts)
       end
     end

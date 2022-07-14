@@ -15,11 +15,10 @@ module Inspec
         ...
       end
     "
-      attr_reader :k8sobject
 
       def initialize(opts = {})
         Validators.validate_params_required(@__resource_name__, [:name], opts)
-        @objtype = 'pods'
+        opts[:type] = 'pods'
         super(opts)
       end
     end
