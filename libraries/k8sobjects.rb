@@ -22,6 +22,13 @@ module Inspec
         end
       "
 
+      # FilterTable setup
+      filter_table_config = FilterTable.create
+      %i[name namespace kind uid resource_version labels annotations].each do |field|
+        filter_table_config.register_column(field.to_s.underscore.pluralize, field: field)
+      end
+      filter_table_config.install_filter_methods_on_resource(self, :fetch_data)
+
       def initialize(opts = {})
         # Call the parent class constructor
         super(opts)
@@ -31,13 +38,6 @@ module Inspec
         @objnamespace = opts[:namespace] if opts[:namespace] ||= nil
         @objlabelSelector = opts[:labelSelector] if opts[:labelSelector] ||= nil
       end
-
-      # FilterTable setup
-      filter_table_config = FilterTable.create
-      %i[name namespace kind uid resource_version labels annotations].each do |field|
-        filter_table_config.add(field, field: field.to_s.pluralize)
-      end
-      filter_table_config.connect(self, :fetch_data)
 
       def fetch_data
         catch_k8s_errors do
