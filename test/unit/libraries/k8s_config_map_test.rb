@@ -1,8 +1,7 @@
-require_relative '../../test_helper'
-require 'k8s_config_map'
+require_relative 'resource_test'
 
-class K8sConfigMapTest < Minitest::Test
-  stub_data = {
+class K8sConfigMapTest < ResourceTest
+  STUB_DATA = {
     'v1': {
       default: {
         configmaps: [
@@ -25,40 +24,37 @@ class K8sConfigMapTest < Minitest::Test
       }
     }
   }
-
-  @k8s_object = Inspec::Resources::K8sObject.new(
-    backend: Mock::K8s::Transport.new(stub_data: stub_data),
-    name: ''
-  )
+  TYPE = 'configmaps'
+  
   def test_uid
-    assert_equal('abcd1234', @k8s_object.uid)
+    assert_equal('abcd1234', k8s_object.uid)
   end
 
   def test_name
-    assert_equal('configmap1', @k8s_object.name)
+    assert_equal('configmap1', k8s_object.name)
   end
 
   def test_namespace
-    assert_equal('default', @k8s_object.namespace)
+    assert_equal('default', k8s_object.namespace)
   end
 
   def test_kind
-    assert_equal('configmap', @k8s_object.kind)
+    assert_equal('configmap', k8s_object.kind)
   end
 
   def test_metadata
-    refute_empty(@k8s_object.metadata)
+    refute_empty(k8s_object.metadata)
   end
 
   def test_resource_version
-    assert_equal(1234, @k8s_object.resource_version)
+    assert_equal(1234, k8s_object.resource_version)
   end
 
   def test_labels
-    assert_empty(@k8s_object.labels)
+    assert_empty(k8s_object.labels)
   end
 
   def annotations
-    assert_empty(@k8s_object.annotations)
+    assert_empty(k8s_object.annotations)
   end
 end
