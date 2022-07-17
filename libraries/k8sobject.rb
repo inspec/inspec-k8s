@@ -73,8 +73,16 @@ module Inspec
         false
       end
 
-      def has_label?(objlabel = nil)
-        if @k8sobject.respond_to?(:metadata) && @k8sobject.metadata.respond_to?(:labels) && @k8sobject.metadata.labels.respond_to?(objlabel) && !@k8sobject.metadata.labels[objlabel].nil?
+      def has_label?(objlabel = nil, value)
+        if @k8sobject.respond_to?(:metadata) && @k8sobject.metadata.respond_to?(:labels) && @k8sobject.metadata.labels.respond_to?(objlabel) && @k8sobject.metadata.labels[objlabel] == value
+          return true
+        end
+
+        false
+      end
+
+      def has_annotation?(objlabel = nil, value)
+        if @k8sobject.respond_to?(:metadata) && @k8sobject.metadata.respond_to?(:annotations) && @k8sobject.metadata.annotations.respond_to?(objlabel) && @k8sobject.metadata.annotations[objlabel] == value
           return true
         end
 
@@ -83,6 +91,10 @@ module Inspec
 
       def exists?
         !@k8sobject.nil?
+      end
+
+      def resource_id
+        uid || ""
       end
 
       def to_s

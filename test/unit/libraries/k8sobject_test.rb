@@ -16,8 +16,8 @@ class K8sObjectTest < ResourceTest
               name: 'pod1',
               namespace: 'default',
               resourceVersion: 1234,
-              annotations: [],
-              labels: []
+              annotations: {test_annotation1: "abc"},
+              labels: {test_label1: "xyz"}
             }
           }
         ]
@@ -47,11 +47,15 @@ class K8sObjectTest < ResourceTest
     assert_equal(1234, k8s_object.resource_version)
   end
 
-  def test_labels
-    assert_empty(k8s_object.labels)
+  def test_has_label?
+    assert_equal(true, k8s_object.has_label?("test_label1", "xyz"))
   end
 
-  def annotations
-    assert_empty(k8s_object.annotations)
+  def test_has_annotation?
+    assert_equal(true, k8s_object.has_annotation?("test_annotation1", "abc"))
+  end
+
+  def test_resource_id
+    assert_equal('abcd1234', k8s_object.resource_id)
   end
 end
