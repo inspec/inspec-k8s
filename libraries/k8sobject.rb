@@ -81,8 +81,8 @@ module Inspec
         false
       end
 
-      def has_annotation?(objlabel = nil, value)
-        if @k8sobject.respond_to?(:metadata) && @k8sobject.metadata.respond_to?(:annotations) && @k8sobject.metadata.annotations.respond_to?(objlabel) && @k8sobject.metadata.annotations[objlabel] == value
+      def has_annotation?(objkey = nil, value)
+        if @k8sobject.respond_to?(:metadata) && @k8sobject.metadata.respond_to?(:annotations) && @k8sobject.metadata.annotations.respond_to?(objkey) && @k8sobject.metadata.annotations[objkey] == value
           return true
         end
 
