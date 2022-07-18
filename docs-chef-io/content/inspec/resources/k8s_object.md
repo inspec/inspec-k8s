@@ -79,12 +79,12 @@ end
 
 ### have_label
 
-The `have_label` matcher verifies if the given key and value is present in the resource lables.
+The `have_label` matcher verifies if the specified key and value are present in the resource lables.
 
     it { should have_label('foo', 'bar') }
 
 ### have_annotation
 
-The `have_annotation` matcher verifies if the given key and value is present in the resource annotations.
+The `have_annotation` matcher verifies if the specified key and value are present in the resource annotations.
 
     it { should have_annotation('foo', 'bar') }
