@@ -55,6 +55,12 @@ end
 `metadata`
 : metadata for the resource.
 
+`labels`
+: Labels of the resource.
+
+`annotations`
+: Annotations of the resource.
+
 ## Examples
 
 ### Test to ensure kube-system, kube-public, and default namespaces exist
