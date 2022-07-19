@@ -12,52 +12,70 @@ platform = "k8s"
 +++
 
 
-Use the `k8s_node` Chef InSpec audit resource to test the configuration of...
+Use the `k8s_node` Chef InSpec audit resource to test the configuration of k8s node.
 
 ## Installation
 
 ## Syntax
 
 ```ruby
-describe k8s_node do
+describe k8s_node(name: "NAME") do
   #...
 end
 ```
 
 ## Parameters
 
-`PARAMETER`
-: PARAMETER DESCRIPTION
-
-`PARAMETER`
-: PARAMETER DESCRIPTION
+`name`
+: name of the Node
 
 ## Properties
 
-`PROPERTY`
-: PROPERTY DESCRIPTION
+`uid`
+: UID of the Node.
 
-`PROPERTY`
-: PROPERTY DESCRIPTION
+`kind`
+: type of k8s resource.
+
+`resource_version`
+: resource version of the Node.
+
+`labels`
+: labels attached to Node.
+
+`annotations`
+: metadata about the Node attached in the form of annotations.
 
 ## Examples
 
-**EXAMPLE DESCRIPTION**
+### The node with specified name shoule exist
 
 ```ruby
-describe k8s_node do
-  #...
-end
-```
-
-**EXAMPLE DESCRIPTION**
-
-```ruby
-describe k8s_node do
-  #...
+describe k8s_node(name: "My-Node") do
+  it { should exist }
 end
 ```
 
 ## Matchers
 
 {{% inspec/inspec_matchers_link %}}
+
+### have_label
+
+The `have_label` matcher verifies if the specified key and value are present in the Node lables.
+
+```ruby
+describe k8s_node(name: "My-Node") do
+  it { should have_label('foo', 'bar') }
+end
+```
+
+### have_annotation
+
+The `have_annotation` matcher verifies if the specified key and value are present in the Node annotations.
+
+```ruby
+describe k8s_node(name: "My-Node") do
+  it { should have_annotation('foo', 'bar') }
+end
+```
