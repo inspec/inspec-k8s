@@ -7,12 +7,12 @@ platform = "k8s"
 [menu]
 [menu.inspec]
 title = "k8s_config_maps"
-identifier = "inspec/resources/k8s/K8s Config Map"
+identifier = "inspec/resources/k8s/K8s Config Maps"
 parent = "inspec/resources/k8s"
 +++
 
 
-Use the `k8s_config_maps` Chef InSpec audit resource to test the configuration of all Config Maps in a namespace
+Use the `k8s_config_maps` Chef InSpec audit resource to test all the Configuration Maps in a namespace.
 
 ## Installation
 
@@ -27,34 +27,34 @@ end
 ## Parameters
 
 `type`
-: type of the K8s resource that is for query
+: Type of the K8s resource that is for a query.
 
 `namespace`
-: namespace of the resource
+: Namespace of the resource.
 
 ## Properties
 
 `uid`
-: UID of the resource
+: UID of the resource.
 
 `name`
-: Name of the resource
+: Name of the resource.
 
 `namespace`
-: Namespace of the resource
+: Namespace of the resource.
 
 `resource_version`
-: resource version of the resource
+: Resource version of the resource.
 
 `kind`
-: resource type
+: Resource type.
 
 `metadata`
-: metadata for the resource
+: Metadata for the resource.
 
 ## Examples
 
-**The config maps for default namespaces should exist**
+### Configuration maps for default namespaces must exist
 
 ```ruby
  describe k8s_config_maps do
@@ -62,7 +62,7 @@ end
 end
 ```
 
-**The config maps should for given namespace exist**
+### Configuration maps must exists for specified namespace
 
 ```ruby
 describe k8s_config_maps(namespace: 'kube-system') do
