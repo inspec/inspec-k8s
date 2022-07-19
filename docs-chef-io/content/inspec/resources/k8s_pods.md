@@ -23,10 +23,7 @@ describe k8s_pods do
 end
 ```
 
-## Parameters
-
-`type`
-: Type of the K8s resource that is for a query.
+## Parameter
 
 `namespace`
 : Namespace of the resource.
@@ -53,7 +50,7 @@ end
 
 ## Examples
 
-### Pods for default namespaces must exist
+### Pods for default namespace must exist
 
 ```ruby
  describe k8s_pods do
@@ -61,7 +58,7 @@ end
 end
 ```
 
-### Pods for specified namespaces must exist
+### Pods for specified namespace must exist
 
 ```ruby
 describe k8s_pods(namespace: 'kube-system') do

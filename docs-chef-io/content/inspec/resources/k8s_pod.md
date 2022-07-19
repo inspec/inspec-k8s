@@ -24,10 +24,7 @@ describe k8s_pod(namespace: "NAMESPACE", name: "NAME") do
 end
 ```
 
-## Parameters
-
-`type`
-: Type of the K8s resource that is for a query.
+## Parameter
 
 `namespace`
 : Namespace of the resource.
