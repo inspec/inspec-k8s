@@ -74,6 +74,7 @@ module Inspec
       end
 
       def has_label?(objlabel = nil, value = nil)
+        # Earlier only key was verified. Accepting value as nil just for the backward compatibility.
         if value.nil?
           @k8sobject.respond_to?(:metadata) && @k8sobject.metadata.respond_to?(:labels) && @k8sobject.metadata.labels.respond_to?(objlabel) && !@k8sobject.metadata.labels[objlabel].nil?
         else
