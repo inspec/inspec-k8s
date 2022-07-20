@@ -93,8 +93,8 @@ module Inspec
         hash = obj.to_h
         hash[:status] = hash[:status].to_h
         hash.merge!(obj.metadata.to_h.transform_keys { |key| key.to_s.underscore.to_sym })
-        hash[:labels] = obj.metadata.labels&.map(&:to_h)
-        hash[:annotations] = obj.metadata.annotations&.map(&:to_h)
+        hash[:labels] = obj.metadata.labels.to_h
+        hash[:annotations] = obj.metadata.annotations.to_h
         hash
       end
     end

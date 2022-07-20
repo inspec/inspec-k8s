@@ -16,8 +16,23 @@ class K8sObjectsTest < ResourceTest
               name: 'pod1',
               namespace: 'default',
               resourceVersion: 1234,
-              annotations: [],
-              labels: []
+              annotations: {"test_annotation1" => "foo"},
+              labels: {"test_label1" => "bar"}
+            }
+          },
+          {
+            name: 'pod2',
+            kind: 'pod',
+            status: {
+              phase: 'running'
+            },
+            metadata: {
+              uid: 'abcd4321',
+              name: 'pod2',
+              namespace: 'default',
+              resourceVersion: 4321,
+              annotations: {},
+              labels: {}
             }
           }
         ]
@@ -47,10 +62,10 @@ class K8sObjectsTest < ResourceTest
   end
 
   def test_labels
-    assert_empty(k8s_objects.labels.flatten)
+    assert_includes(k8s_objects.labels, { :test_label1 => "bar" })
   end
 
   def test_annotations
-    assert_empty(k8s_objects.annotations.flatten)
+    assert_includes(k8s_objects.annotations, { :test_annotation1 => "foo" },)
   end
 end
