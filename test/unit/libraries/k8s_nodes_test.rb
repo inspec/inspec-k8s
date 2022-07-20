@@ -24,7 +24,7 @@ class K8sNodesTest < ResourceTest
               uid: 'abcd4567',
               name: 'node2',
               resourceVersion: 4321,
-              annotations: {foo: 'bar'},
+              annotations: {"foo" => "bar"},
               labels: {}
             }
           }
@@ -51,12 +51,12 @@ class K8sNodesTest < ResourceTest
     assert_includes(k8s_objects.resource_versions, 4321)
   end
 
-  # This needs to be modified once the issue for labels and annotation is fixed in the dependent PR
+  # This needs to be uncommented once the PR raised to fix the labels and annotations values to return hash gets merged.
   # def test_labels
-  #   assert_empty(k8s_objects.labels.flatten)
+  #   assert_includes(k8s_objects.labels, { :foo => "bar" })
   # end
 
   # def test_annotations
-  #   assert_empty(k8s_objects.annotations.flatten)
+  #   assert_includes(k8s_objects.annotations, {})
   # end
 end
