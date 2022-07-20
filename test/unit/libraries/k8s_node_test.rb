@@ -8,9 +8,6 @@ class K8sNodeTest < ResourceTest
           {
             name: 'node1',
             kind: 'node',
-            status: {
-              phase: 'running'
-            },
             metadata: {
               uid: 'abcd1234',
               name: 'node1',

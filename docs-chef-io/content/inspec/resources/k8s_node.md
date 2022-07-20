@@ -35,16 +35,16 @@ end
 : UID of the Node.
 
 `kind`
-: type of k8s resource.
+: Resource type of the Node.
 
 `resource_version`
-: resource version of the Node.
+: Resource version of the Node.
 
 `labels`
-: labels attached to Node.
+: Labels attached to Node.
 
 `annotations`
-: metadata about the Node attached in the form of annotations.
+: Annotations of the Node.
 
 ## Examples
 
