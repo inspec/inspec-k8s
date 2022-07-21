@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'resource_test'
 
 class K8sNodeTest < ResourceTest
@@ -12,17 +14,17 @@ class K8sNodeTest < ResourceTest
               uid: 'abcd1234',
               name: 'node1',
               resourceVersion: 1234,
-              annotations: { annotation1: "value1" },
-              labels: { label1: "value1" }
+              annotations: { annotation1: 'value1' },
+              labels: { label1: 'value1' }
             }
           }
         ]
       }
     }
-  }
+  }.freeze
 
-  TYPE = 'nodes'.freeze
-  NAME = 'node1'.freeze
+  TYPE = 'nodes'
+  NAME = 'node1'
 
   def test_uid
     assert_equal('abcd1234', k8s_object.uid)
@@ -45,10 +47,10 @@ class K8sNodeTest < ResourceTest
   end
 
   def test_has_label?
-    assert_equal(true, k8s_object.has_label?("label1", "value1"))
+    assert_equal(true, k8s_object.has_label?('label1', 'value1'))
   end
 
   def test_has_annotation?
-    assert_equal(true, k8s_object.has_annotation?("annotation1", "value1"))
+    assert_equal(true, k8s_object.has_annotation?('annotation1', 'value1'))
   end
 end

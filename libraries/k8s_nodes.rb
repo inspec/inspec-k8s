@@ -4,6 +4,7 @@ require 'k8sobjects'
 
 module Inspec
   module Resources
+    # k8s_nodes resource to get data about all kubernetes nodes
     class K8sNodes < K8sObjects
       DEFAULT_NAMESPACE = nil
 

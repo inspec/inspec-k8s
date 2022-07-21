@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'resource_test'
 
 class K8sNodesTest < ResourceTest
@@ -14,7 +16,7 @@ class K8sNodesTest < ResourceTest
               namespace: 'default',
               resourceVersion: 1234,
               annotations: {},
-              labels: { "foo" => "bar"}
+              labels: { foo: 'bar' }
             }
           },
           {
@@ -24,16 +26,16 @@ class K8sNodesTest < ResourceTest
               uid: 'abcd4567',
               name: 'node2',
               resourceVersion: 4321,
-              annotations: {"foo1" => "bar1"},
+              annotations: { foo1: 'bar1' },
               labels: {}
             }
           }
         ]
       }
     }
-  }
+  }.freeze
 
-  TYPE = 'nodes'.freeze
+  TYPE = 'nodes'
 
   def test_uids
     assert_includes(k8s_objects.uids, 'abcd1234')
@@ -52,7 +54,7 @@ class K8sNodesTest < ResourceTest
   end
 
   def test_labels
-    assert_includes(k8s_objects.labels, { :foo => "bar" })
+    assert_includes(k8s_objects.labels, { foo: 'bar' })
   end
 
   def test_annotations
@@ -60,6 +62,6 @@ class K8sNodesTest < ResourceTest
   end
 
   def test_annotations_has_given_values
-    assert_includes(k8s_objects.annotations, { :foo1 => "bar1" })
+    assert_includes(k8s_objects.annotations, { foo1: 'bar1' })
   end
 end
