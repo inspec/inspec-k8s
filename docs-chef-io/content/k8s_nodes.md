@@ -39,7 +39,7 @@ end
 
 ## Examples
 
-### Verify nodes includes a node with a specified name and UID.
+### Verify nodes include a node with a specified name and UID.
 
 ```ruby
  describe k8s_nodes do

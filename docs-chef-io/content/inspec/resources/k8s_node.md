@@ -27,7 +27,7 @@ end
 ## Parameters
 
 `name`
-: name of the Node
+: Name of the Node
 
 ## Properties
 
@@ -48,10 +48,10 @@ end
 
 ## Examples
 
-### The node with specified name shoule exist
+### The node with the specified name should exist
 
 ```ruby
-describe k8s_node(name: "My-Node") do
+describe k8s_node(name: "Node-Name") do
   it { should exist }
 end
 ```
@@ -62,12 +62,10 @@ end
 
 ### have_label
 
-The `have_label` matcher verifies if the specified key and value are present in the Node lables.
+The `have_label` matcher verifies if the specified key and value are present in the Node labels.
 
 ```ruby
-describe k8s_node(name: "My-Node") do
-  it { should have_label('foo', 'bar') }
-end
+it { should have_label('foo', 'bar') }
 ```
 
 ### have_annotation
@@ -75,7 +73,5 @@ end
 The `have_annotation` matcher verifies if the specified key and value are present in the Node annotations.
 
 ```ruby
-describe k8s_node(name: "My-Node") do
-  it { should have_annotation('foo', 'bar') }
-end
+it { should have_annotation('foo', 'bar') }
 ```
