@@ -24,7 +24,7 @@ class K8sNodesTest < ResourceTest
               uid: 'abcd4567',
               name: 'node2',
               resourceVersion: 4321,
-              annotations: {"foo" => "bar"},
+              annotations: {"foo1" => "bar1"},
               labels: {}
             }
           }
@@ -51,12 +51,15 @@ class K8sNodesTest < ResourceTest
     assert_includes(k8s_objects.resource_versions, 4321)
   end
 
-  # This needs to be uncommented once the PR raised to fix the labels and annotations values to return hash gets merged.
-  # def test_labels
-  #   assert_includes(k8s_objects.labels, { :foo => "bar" })
-  # end
+  def test_labels
+    assert_includes(k8s_objects.labels, { :foo => "bar" })
+  end
 
-  # def test_annotations
-  #   assert_includes(k8s_objects.annotations, {})
-  # end
+  def test_annotations
+    assert_includes(k8s_objects.annotations, {})
+  end
+
+  def test_annotations_has_given_values
+    assert_includes(k8s_objects.annotations, { :foo1 => "bar1" })
+  end
 end

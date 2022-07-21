@@ -44,12 +44,11 @@ class K8sNodeTest < ResourceTest
     assert_equal(1234, k8s_object.resource_version)
   end
 
-  # TODO: Has dependency on PR https://github.com/inspec/inspec-k8s/pull/12 once that merged uncomment this test.
-  # def test_has_label?
-  #   assert_equal(true, k8s_object.has_label?("label1", "value1"))
-  # end
+  def test_has_label?
+    assert_equal(true, k8s_object.has_label?("label1", "value1"))
+  end
 
-  # def test_has_annotation?
-  #   assert_equal(true, k8s_object.has_annotation?("annotation1", "value1"))
-  # end
+  def test_has_annotation?
+    assert_equal(true, k8s_object.has_annotation?("annotation1", "value1"))
+  end
 end
