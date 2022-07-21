@@ -11,7 +11,7 @@ identifier = "inspec/resources/k8s/K8s Pods"
 parent = "inspec/resources/k8s"
 +++
 
-Use the `k8s_pods` Chef InSpec audit resource to test the configuration of all Pods in a namespace.
+Use the `k8s_pods` Chef InSpec audit resource to test the configurations of all Pods in a namespace.
 
 ## Installation
 

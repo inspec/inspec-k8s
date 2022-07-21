@@ -38,7 +38,7 @@ end
 ## Properties
 
 `uid`
-: UID of the resource. 
+: UID of the resource.
 
 `name`
 : Name of the resource.
@@ -47,20 +47,26 @@ end
 : Namespace of the resource.
 
 `resource_version`
-: resource version of the resource.
+: Resource version of the resource.
 
 `kind`
-: resource type.
+: Resource type.
 
 `metadata`
-: metadata for the resource.
+: Metadata for the resource.
+
+`labels`
+: Labels of the resource.
+
+`annotations`
+: Annotations of the resource.
 
 ## Examples
 
 ### Test to ensure kube-system, kube-public, and default namespaces exist
 
 ```ruby
- describe k8sobject(api: 'v1', type: 'namespaces', name: 'kube-system') do
+describe k8sobject(api: 'v1', type: 'namespaces', name: 'kube-system') do
   it { should exist }
 end
 ```
@@ -76,3 +82,19 @@ end
 ## Matchers
 
 {{% inspec/inspec_matchers_link %}}
+
+### have_label
+
+The `have_label` matcher verifies if the specified key and value are present in the resource lables.
+
+```ruby
+it { should have_label('foo', 'bar') }
+```
+
+### have_annotation
+
+The `have_annotation` matcher verifies if the specified key and value are present in the resource annotations.
+
+```ruby
+it { should have_annotation('foo', 'bar') }
+```

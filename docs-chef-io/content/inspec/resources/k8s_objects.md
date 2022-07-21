@@ -44,13 +44,13 @@ end
 : Namespace of the resource.
 
 `resource_versions`
-: resource version of the resource.
+: Resource version of the resource.
 
 `kinds`
-: resource type.
+: Resource type.
 
 `metadatas`
-: metadata for the resource.
+: Metadata for the resource.
 
 ## Examples
 

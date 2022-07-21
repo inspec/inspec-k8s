@@ -44,7 +44,7 @@ module Inspec
       end
 
       delegate :kind, :metadata, to: :resource
-      delegate :uid, :name, :namespace, :resourceVersion, :labels, :annotations, :creationTimestamp, to: :metadata
+      delegate :uid, :name, :namespace, :resourceVersion, :creationTimestamp, to: :metadata
 
       alias resource_version resourceVersion
 
@@ -73,16 +73,38 @@ module Inspec
         false
       end
 
-      def has_label?(objlabel = nil)
-        if @k8sobject.respond_to?(:metadata) && @k8sobject.metadata.respond_to?(:labels) && @k8sobject.metadata.labels.respond_to?(objlabel) && !@k8sobject.metadata.labels[objlabel].nil?
-          return true
+      def has_label?(objlabel = nil, value = nil)
+        # Earlier only key was verified. Accepting value as nil just for the backward compatibility.
+        if value.nil?
+          @k8sobject.respond_to?(:metadata) && @k8sobject.metadata.respond_to?(:labels) && @k8sobject.metadata.labels.respond_to?(objlabel) && !@k8sobject.metadata.labels[objlabel].nil?
+        else
+          @k8sobject.respond_to?(:metadata) && @k8sobject.metadata.respond_to?(:labels) && @k8sobject.metadata.labels.respond_to?(objlabel) && @k8sobject.metadata.labels[objlabel] == value
         end
+      end
 
-        false
+      def has_annotation?(objkey = nil, value = nil)
+        # values sometimes are very long descriptions in such cases user might want to only search with key.
+        if value.nil?
+          @k8sobject.respond_to?(:metadata) && @k8sobject.metadata.respond_to?(:annotations) && @k8sobject.metadata.annotations.respond_to?(objkey) && !@k8sobject.metadata.annotations[objkey].nil?
+        else
+          @k8sobject.respond_to?(:metadata) && @k8sobject.metadata.respond_to?(:annotations) && @k8sobject.metadata.annotations.respond_to?(objkey) && @k8sobject.metadata.annotations[objkey] == value
+        end
       end
 
       def exists?
         !@k8sobject.nil?
+      end
+
+      def labels
+        k8sobject.metadata.labels.to_h
+      end
+
+      def annotations
+        @k8sobject.metadata.annotations.to_h
+      end
+
+      def resource_id
+        uid || ""
       end
 
       def to_s
