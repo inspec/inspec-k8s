@@ -47,13 +47,13 @@ end
 : Namespace of the resource.
 
 `resource_version`
-: resource version of the resource.
+: Resource version of the resource.
 
 `kind`
-: resource type.
+: Resource type.
 
 `metadata`
-: metadata for the resource.
+: Metadata for the resource.
 
 `labels`
 : Labels of the resource.
@@ -87,10 +87,14 @@ end
 
 The `have_label` matcher verifies if the specified key and value are present in the resource lables.
 
-    it { should have_label('foo', 'bar') }
+```ruby
+it { should have_label('foo', 'bar') }
+```
 
 ### have_annotation
 
 The `have_annotation` matcher verifies if the specified key and value are present in the resource annotations.
 
-    it { should have_annotation('foo', 'bar') }
+```ruby
+it { should have_annotation('foo', 'bar') }
+```
