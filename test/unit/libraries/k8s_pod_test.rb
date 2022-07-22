@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'resource_test'
 
 class K8sPodTest < ResourceTest
@@ -16,17 +18,17 @@ class K8sPodTest < ResourceTest
               name: 'pod1',
               namespace: 'default',
               resourceVersion: 1234,
-              annotations: [],
-              labels: []
+              annotations: {},
+              labels: {}
             }
           }
         ]
       }
     }
-  }
+  }.freeze
 
-  TYPE = 'pods'.freeze
-  NAME = 'pod1'.freeze
+  TYPE = 'pods'
+  NAME = 'pod1'
 
   def test_uid
     assert_equal('abcd1234', k8s_object.uid)
@@ -49,10 +51,10 @@ class K8sPodTest < ResourceTest
   end
 
   def test_labels
-    assert_empty(k8s_object.labels)
+    assert_equal(k8s_object.labels, {})
   end
 
-  def annotations
-    assert_empty(k8s_object.annotations)
+  def test_annotations
+    assert_equal(k8s_object.annotations, {})
   end
 end

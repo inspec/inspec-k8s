@@ -4,6 +4,7 @@ require 'k8sobjects'
 
 module Inspec
   module Resources
+    # k8s_config_maps resource class to get information about all the Kubernetes config maps.
     class K8sConfigMaps < K8sObjects
       name 'k8s_config_maps'
       desc 'Verifies settings for all config maps'

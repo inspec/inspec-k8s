@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'resource_test'
 
 class K8sObjectTest < ResourceTest
@@ -16,14 +18,14 @@ class K8sObjectTest < ResourceTest
               name: 'pod1',
               namespace: 'default',
               resourceVersion: 1234,
-              annotations: {"test_annotation1" => "abc"},
+              annotations: { test_annotation1: 'abc' },
               labels: {}
             }
           }
         ]
       }
     }
-  }
+  }.freeze
   NAME = 'pod1'
   TYPE = 'pods'
 
@@ -52,15 +54,15 @@ class K8sObjectTest < ResourceTest
   end
 
   def test_has_label?
-    assert_equal(false, k8s_object.has_label?("foo", "bar"))
+    assert_equal(false, k8s_object.has_label?('foo', 'bar'))
   end
 
   def test_has_annotation?
-    assert_equal(true, k8s_object.has_annotation?("test_annotation1", "abc"))
+    assert_equal(true, k8s_object.has_annotation?('test_annotation1', 'abc'))
   end
 
   def test_has_annotation_only_key
-    assert_equal(true, k8s_object.has_annotation?("test_annotation1"))
+    assert_equal(true, k8s_object.has_annotation?('test_annotation1'))
   end
 
   def test_resource_id

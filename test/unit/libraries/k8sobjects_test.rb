@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'resource_test'
 
 class K8sObjectsTest < ResourceTest
@@ -16,8 +18,8 @@ class K8sObjectsTest < ResourceTest
               name: 'pod1',
               namespace: 'default',
               resourceVersion: 1234,
-              annotations: {"test_annotation1" => "foo"},
-              labels: {"test_label1" => "bar"}
+              annotations: { test_annotation1: 'foo' },
+              labels: { test_label1: 'bar' }
             }
           },
           {
@@ -38,7 +40,7 @@ class K8sObjectsTest < ResourceTest
         ]
       }
     }
-  }
+  }.freeze
   TYPE = 'pods'
 
   def test_uids
@@ -62,10 +64,10 @@ class K8sObjectsTest < ResourceTest
   end
 
   def test_labels
-    assert_includes(k8s_objects.labels, { :test_label1 => "bar" })
+    assert_includes(k8s_objects.labels, { test_label1: 'bar' })
   end
 
   def test_annotations
-    assert_includes(k8s_objects.annotations, { :test_annotation1 => "foo" },)
+    assert_includes(k8s_objects.annotations, { test_annotation1: 'foo' })
   end
 end

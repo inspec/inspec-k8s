@@ -4,6 +4,7 @@ require 'k8sobjects'
 
 module Inspec
   module Resources
+    # k8s_pods resource class gets details about all the Kubernetes pods.
     class K8sPods < K8sObjects
       name 'k8s_pods'
       desc 'Verifies settings for all pods'

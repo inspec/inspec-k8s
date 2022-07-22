@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'k8sobject'
 require 'k8sobjects'
 
 module Shared
   module Examples
-    NAMESPACE = 'default'.freeze
+    NAMESPACE = 'default'
 
     def k8s_object
       @k8s_object ||= Inspec::Resources::K8sObject.new(

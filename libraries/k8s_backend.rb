@@ -43,6 +43,7 @@ class K8sResourceBase < Inspec.resource(1)
   end
 end
 
+# Resource parameters validations
 module Validators
   # @see https://github.com/inspec/inspec-aws/blob/master/libraries/aws_backend.rb#L209
   #
