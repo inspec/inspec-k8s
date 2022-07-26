@@ -4,6 +4,7 @@ require 'k8s_backend'
 require 'pry'
 
 module Inspec::Resources
+  # k8sversion resource class to get details about Kubernetes version.
   class K8sVersion < K8sResourceBase
     name 'k8sversion'
     desc 'Gets Kubernetes Version info'
@@ -14,7 +15,7 @@ module Inspec::Resources
         ...
       end
     "
-    attr_reader :k8sversion, :k8suri, :gitVersion, :major, :minor, :platform, :buildDate
+    attr_reader :k8sversion, :k8suri, :gitVersion, :major, :minor, :buildDate
 
     def initialize(opts = {})
       # Call the parent class constructor

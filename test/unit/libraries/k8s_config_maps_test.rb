@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'resource_test'
 
 class K8sConfigMapsConstructorTest < ResourceTest
@@ -16,15 +18,16 @@ class K8sConfigMapsConstructorTest < ResourceTest
               name: 'configmap1',
               namespace: 'default',
               resourceVersion: 1234,
-              annotations: [],
-              labels: []
+              annotations: {},
+              labels: {}
             }
           }
         ]
       }
     }
-  }
-  TYPE = 'configmaps'.freeze
+  }.freeze
+
+  TYPE = 'configmaps'
 
   def test_uids
     assert_includes(k8s_objects.uids, 'abcd1234')
@@ -47,10 +50,10 @@ class K8sConfigMapsConstructorTest < ResourceTest
   end
 
   def test_labels
-    assert_empty(k8s_objects.labels.flatten)
+    assert_includes(k8s_objects.labels, {})
   end
 
   def test_annotations
-    assert_empty(k8s_objects.annotations.flatten)
+    assert_includes(k8s_objects.annotations, {})
   end
 end

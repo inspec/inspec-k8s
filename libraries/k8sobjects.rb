@@ -5,6 +5,7 @@ require 'active_support/core_ext/string'
 
 module Inspec
   module Resources
+    # k8s_objects resource class gets list of kubernetes resource with given type.
     class K8sObjects < K8sResourceBase
       name 'k8sobjects'
       desc 'Gets a list of a given type of Kubernetes Object'
@@ -46,7 +47,7 @@ module Inspec
         @objtype = opts[:type] if opts[:type] ||= nil
         @objname = opts[:name] if opts[:name] ||= nil
         @objnamespace = opts[:namespace] if opts[:namespace] ||= nil
-        @objlabelSelector = opts[:labelSelector] if opts[:labelSelector] ||= nil
+        @obj_label_selector = opts[:labelSelector] if opts[:labelSelector] ||= nil
         fetch_data
         populate_filter_table_from_response
       end
@@ -62,11 +63,11 @@ module Inspec
       end
 
       def getobjects
-        @k8sobjects = if !@objnamespace.nil?
-                        @k8s.client.api(@objapi).resource(@objtype,
-                                                          namespace: @objnamespace).list(labelSelector: @objlabelSelector)
+        @k8sobjects = if @objnamespace.nil?
+                        @k8s.client.api(@objapi).resource(@objtype).list(labelSelector: @obj_label_selector)
                       else
-                        @k8s.client.api(@objapi).resource(@objtype).list(labelSelector: @objlabelSelector)
+                        @k8s.client.api(@objapi).resource(@objtype,
+                                                          namespace: @objnamespace).list(labelSelector: @obj_label_selector)
                       end
       end
 

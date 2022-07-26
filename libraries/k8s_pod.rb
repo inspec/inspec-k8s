@@ -4,6 +4,7 @@ require 'k8sobject'
 
 module Inspec
   module Resources
+    # k8s_pod resource class to get information about specific Kubernetes pod in given namespace.
     class K8sPod < K8sObject
       name 'k8s_pod'
       desc 'Verifies settings for a specific pod'

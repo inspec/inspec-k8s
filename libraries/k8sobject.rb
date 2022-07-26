@@ -6,6 +6,7 @@ require 'active_support/core_ext/module/delegation'
 
 module Inspec
   module Resources
+    # k8s_object resource class to get information about all types of Kubernetes resources.
     class K8sObject < K8sResourceBase
       DEFAULT_NAMESPACE = 'default'
       name 'k8sobject'
@@ -54,19 +55,17 @@ module Inspec
 
       def container_names
         if @k8sobject.respond_to?(:spec) && @k8sobject.spec.respond_to?(:containers) && @k8sobject.spec.containers.respond_to?(:name)
-          @k8sobject.spec.containers.map do |c|
-            c.name
-          end
+          @k8sobject.spec.containers.map(&:name)
         end
       end
 
       def container_images
-        @k8sobject.spec.containers.map { |c| c.image } unless @k8sobject.spec.containers.nil?
+        @k8sobject.spec.containers&.map(&:image)
       end
 
       def has_latest_container_tag?
         if @k8sobject.respond_to?(:spec) && @k8sobject.spec.respond_to?(:containers)
-          @k8sobject.spec.containers.map { |c| c.image }.each do |i|
+          @k8sobject.spec.containers.map(&:image).each do |i|
             return true if i =~ /^.*:latest$/
           end
         end
@@ -76,18 +75,18 @@ module Inspec
       def has_label?(objlabel = nil, value = nil)
         # Earlier only key was verified. Accepting value as nil just for the backward compatibility.
         if value.nil?
-          @k8sobject.respond_to?(:metadata) && @k8sobject.metadata.respond_to?(:labels) && @k8sobject.metadata.labels.respond_to?(objlabel) && !@k8sobject.metadata.labels[objlabel].nil?
+          @k8sobject&.metadata&.labels.respond_to?(objlabel)
         else
-          @k8sobject.respond_to?(:metadata) && @k8sobject.metadata.respond_to?(:labels) && @k8sobject.metadata.labels.respond_to?(objlabel) && @k8sobject.metadata.labels[objlabel] == value
+          @k8sobject&.metadata&.labels.respond_to?(objlabel) && @k8sobject.metadata.labels[objlabel] == value
         end
       end
 
       def has_annotation?(objkey = nil, value = nil)
         # values sometimes are very long descriptions in such cases user might want to only search with key.
         if value.nil?
-          @k8sobject.respond_to?(:metadata) && @k8sobject.metadata.respond_to?(:annotations) && @k8sobject.metadata.annotations.respond_to?(objkey) && !@k8sobject.metadata.annotations[objkey].nil?
+          @k8sobject&.metadata&.annotations.respond_to?(objkey)
         else
-          @k8sobject.respond_to?(:metadata) && @k8sobject.metadata.respond_to?(:annotations) && @k8sobject.metadata.annotations.respond_to?(objkey) && @k8sobject.metadata.annotations[objkey] == value
+          @k8sobject&.metadata&.annotations.respond_to?(objkey) && @k8sobject.metadata.annotations[objkey] == value
         end
       end
 
@@ -104,7 +103,7 @@ module Inspec
       end
 
       def resource_id
-        uid || ""
+        uid || ''
       end
 
       def to_s

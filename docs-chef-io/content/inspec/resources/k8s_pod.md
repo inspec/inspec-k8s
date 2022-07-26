@@ -51,7 +51,7 @@ end
 
 ## Examples
 
-### Pod for default namespaces must exist
+### Pod for default namespace must exist
 
 ```ruby
  describe k8s_pod(name: 'NAME') do

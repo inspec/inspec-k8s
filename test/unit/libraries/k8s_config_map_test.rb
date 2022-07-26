@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'resource_test'
 
 class K8sConfigMapTest < ResourceTest
@@ -16,16 +18,17 @@ class K8sConfigMapTest < ResourceTest
               name: 'configmap1',
               namespace: 'default',
               resourceVersion: 1234,
-              annotations: [],
-              labels: []
+              annotations: {},
+              labels: {}
             }
           }
         ]
       }
     }
-  }
-  NAME = 'configmap1'.freeze
-  TYPE = 'configmaps'.freeze
+  }.freeze
+
+  NAME = 'configmap1'
+  TYPE = 'configmaps'
 
   def test_uid
     assert_equal('abcd1234', k8s_object.uid)
@@ -48,10 +51,10 @@ class K8sConfigMapTest < ResourceTest
   end
 
   def test_labels
-    assert_empty(k8s_object.labels)
+    assert_equal(k8s_object.labels, {})
   end
 
   def annotations
-    assert_empty(k8s_object.annotations)
+    assert_equal(k8s_object.annotations, {})
   end
 end

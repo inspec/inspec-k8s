@@ -25,9 +25,6 @@ end
 
 ## Parameters
 
-`type`
-: Type of the K8s resource that is for a query.
-
 `namespace`
 : Namespace of the resource.
 
@@ -53,7 +50,7 @@ end
 
 ## Examples
 
-### Configuration map for default namespaces must exist
+### Configuration map for default namespace must exist
 
 ```ruby
  describe k8s_config_map(name: 'NAME') do
