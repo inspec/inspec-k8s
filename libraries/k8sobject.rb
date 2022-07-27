@@ -48,6 +48,7 @@ module Inspec
       delegate :uid, :name, :namespace, :resourceVersion, :creationTimestamp, to: :metadata
 
       alias resource_version resourceVersion
+      alias creation_timestamp creationTimestamp
 
       def item
         @k8sobject
