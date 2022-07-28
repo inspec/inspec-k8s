@@ -12,14 +12,14 @@ parent = "inspec/resources/k8s"
 +++
 
 
-Use the `k8s_deployment` Chef InSpec audit resource to test the configuration of a specific Deployment in the specified namespace and api.
+Use the `k8s_deployment` Chef InSpec audit resource to test the configuration of a specific Deployment in the specified namespace.
 
 ## Installation
 
 ## Syntax
 
 ```ruby
-describe k8s_deployment(name: 'coredns', namespace: 'kube-system', api: 'apps/v1') do
+describe k8s_deployment(name: 'coredns', namespace: 'kube-system') do
   it { should exist }
 end
 ```
@@ -31,9 +31,6 @@ end
 
 `namespace`
 : Namespace of the resource (default is **default**).
-
-`api`
-: API version of the resource (default is **v1**).
 
 ## Properties
 
@@ -69,7 +66,7 @@ end
 ### Deployment for default namespace must exist and test its properties
 
 ```ruby
-describe k8s_deployment(name: 'new-deployment', api: 'apps/v1') do
+describe k8s_deployment(name: 'new-deployment') do
   it { should exist }
   its('uid') { should eq 'e948355b-adc2-4db8-af16-34f5aa38d6ec' }
   its('resource_version') { should eq '8107' }
@@ -86,7 +83,7 @@ end
 ### Deployment for a specified namespace must exist
 
 ```ruby
-describe k8s_deployment(namespace: 'kube-system', name: 'coredns', api: 'apps/v1') do
+describe k8s_deployment(namespace: 'kube-system', name: 'coredns') do
   it { should exist }
 end
 ```

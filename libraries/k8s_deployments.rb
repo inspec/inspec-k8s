@@ -10,12 +10,12 @@ module Inspec
       desc 'Verifies settings for all deployments'
 
       example "
-      describe k8s_deployments(api: 'apps/v1') do
+      describe k8s_deployments do
         it { should exist }
         its('names') { should include 'nginx-deployment' }
       end
 
-      describe k8s_deployments(namespace: 'kube-system', api: 'apps/v1') do
+      describe k8s_deployments(namespace: 'kube-system') do
         it { should exist }
         its('uids') { should include 'eeb07afc-2f45-4d52-9fda-aa362f7c536c' }
         its('resource_versions') { should include '7944' }
@@ -29,6 +29,7 @@ module Inspec
 
       def initialize(opts = {})
         opts[:type] = 'deployments'
+        opts[:api] = 'apps/v1'
         super(opts)
       end
     end

@@ -10,12 +10,12 @@ module Inspec
       desc 'Verifies settings for a specific deployment'
 
       example "
-      describe k8s_deployment(name: 'my-deployment', api: 'apps/v1') do
+      describe k8s_deployment(name: 'my-deployment') do
         it { should exist }
         its('name') { should eq 'my-deployment' }
       end
 
-      describe k8s_deployment(namespace: 'default', name: 'new-deployment', api: 'apps/v1') do
+      describe k8s_deployment(namespace: 'default', name: 'new-deployment') do
         it { should exist }
         its('uid') { should eq 'e948355b-adc2-4db8-af16-34f5aa38d6ec' }
         its('resourceVersion') { should eq '8107' }
@@ -31,6 +31,7 @@ module Inspec
       def initialize(opts = {})
         Validators.validate_params_required(@__resource_name__, [:name], opts)
         opts[:type] = 'deployments'
+        opts[:api] = 'apps/v1'
         super(opts)
       end
     end
