@@ -12,7 +12,7 @@ platform = "k8s"
 +++
 
 
-Use the `k8s_node` Chef InSpec audit resource to test the configuration of k8s node.
+Use the `k8s_node` Chef InSpec audit resource to test the configuration of the K8s node.
 
 ## Installation
 
@@ -27,31 +27,31 @@ end
 ## Parameters
 
 `name`
-: Name of the Node
+: Node name.
 
 ## Properties
 
 `uid`
-: UID of the Node.
+: UID of the node.
 
 `kind`
-: Resource type of the Node.
+: Resource type of the node.
 
 `resource_version`
-: Resource version of the Node.
+: Resource version of the node.
 
 `labels`
-: Labels attached to Node.
+: Labels attached to the node.
 
 `annotations`
-: Annotations of the Node.
+: Annotations of the node.
 
 ## Examples
 
-### The node with the specified name should exist
+### Test to verify that the node with the specified name exists
 
 ```ruby
-describe k8s_node(name: "Node-Name") do
+describe k8s_node(name: "NODE_NAME") do
   it { should exist }
 end
 ```
@@ -62,7 +62,7 @@ end
 
 ### have_label
 
-The `have_label` matcher verifies if the specified key and value are present in the Node labels.
+The `have_label` matcher verifies if the specified key and value are present in the node labels.
 
 ```ruby
 it { should have_label('foo', 'bar') }
@@ -70,7 +70,7 @@ it { should have_label('foo', 'bar') }
 
 ### have_annotation
 
-The `have_annotation` matcher verifies if the specified key and value are present in the Node annotations.
+The `have_annotation` matcher verifies if the specified key and value are present in the node annotations.
 
 ```ruby
 it { should have_annotation('foo', 'bar') }

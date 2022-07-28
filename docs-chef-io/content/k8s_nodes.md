@@ -11,7 +11,7 @@ identifier = "inspec/resources/k8s/K8s Nodes"
 parent = "inspec/resources/k8s"
 +++
 
-Use the `k8s_nodes` Chef InSpec audit resource to test the configuration of all Nodes.
+Use the `k8s_nodes` Chef InSpec audit resource to test the configuration of all nodes.
 
 ## Installation
 
@@ -26,26 +26,26 @@ end
 ## Properties
 
 `uids`
-: UID of the Nodes.
+: UID of the nodes.
 
 `names`
-: Name of the Nodes.
+: Name of the nodes.
 
 `resource_versions`
-: Resource version of the Nodes.
+: Resource version of the nodes.
 
 `kinds`
-: Resource type of the Nodes.
+: Resource type of the nodes.
 
 ## Examples
 
-### Verify nodes include a node with a specified name and UID.
+### Test to verify nodes include a node with a specified name and UID
 
 ```ruby
  describe k8s_nodes do
   it { should exist }
-  its('names') { should include 'node-name' }
-  its('uids') { should include 'uid-of-the-node' }
+  its('names') { should include 'NODE_NAME' }
+  its('uids') { should include 'NODE_UID' }
 end
 ```
 
