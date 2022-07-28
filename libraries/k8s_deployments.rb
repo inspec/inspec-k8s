@@ -4,7 +4,7 @@ require 'k8sobjects'
 
 module Inspec
   module Resources
-    # k8s_deployment resource to get data about specific kubernetes deployment.
+    # k8s_deployments resource to get data about all kubernetes deployment.
     class K8sDeployments < K8sObjects
       name 'k8s_deployments'
       desc 'Verifies settings for all deployments'
