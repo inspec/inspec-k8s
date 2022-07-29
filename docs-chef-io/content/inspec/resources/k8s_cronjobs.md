@@ -58,7 +58,7 @@ end
 ```ruby
 describe k8s_cronjobs do
   it { should exist }
-  its("names") { should include "hello" }
+  its('names') { should include 'hello' }
   its('uids') { should include '378c1a39-cddc-4df6-bf5a-593779eb26fc' }
   its('namespaces') { should include 'default' }
   its('resource_versions') { should include '70517' }
@@ -73,7 +73,7 @@ end
 ```ruby
 describe k8s_cronjobs(namespace: 'my-namespace') do
   it { should exist }
-  its("names") { should include "hello-world" }
+  its('names') { should include 'hello-world' }
 end
 ```
 
