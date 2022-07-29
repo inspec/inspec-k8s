@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'resource_test'
 
 class K8sRbacClusterRoleTest < ResourceTest
@@ -14,7 +16,7 @@ class K8sRbacClusterRoleTest < ResourceTest
               resourceVersion: 1234,
               annotations: { annotation1: 'value1' },
               labels: { label1: 'value1' },
-              creationTimestamp: "2022-07-28T10:54:46Z"
+              creationTimestamp: '2022-07-28T10:54:46Z'
             }
           }
         ]
@@ -55,9 +57,9 @@ class K8sRbacClusterRoleTest < ResourceTest
   end
 
   def test_creation_timestam
-    assert_equal("2022-07-28T10:54:46Z", k8s_object.creationTimestamp)
+    assert_equal('2022-07-28T10:54:46Z', k8s_object.creationTimestamp)
   end
 
-  #TODO: Writing test for rules, aggreation_rule is pending as currently we are unable to call those methods using k8s_object.
-  # Need to work on mocking the transport for specific resource.
+  # TODO: Writing test for rules, aggreation_rule is pending as currently we are unable to call those methods
+  # using k8s_object. Need to work on mocking the transport for specific resource.
 end
