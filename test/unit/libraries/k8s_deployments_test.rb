@@ -2,7 +2,7 @@
 
 require_relative 'resource_test'
 
-class K8sPodsTest < ResourceTest
+class K8sDeploymentsTest < ResourceTest
   STUB_DATA = {
     'v1': {
       default: {
