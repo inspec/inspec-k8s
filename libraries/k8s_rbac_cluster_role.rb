@@ -27,19 +27,15 @@ module Inspec
       end
 
       def aggregation_rule
-        resource.aggregationRule.to_h
+        resource&.aggregationRule&.to_h
       end
 
       def cluster_role_selectors
-        return [] if resource.aggregationRule.nil?
-
-        resource.aggregationRule.clusterRoleSelectors.map(&:to_h)
+        resource&.aggregationRule&.clusterRoleSelectors&.map(&:to_h)
       end
 
       def rules
-        return [] if resource.rules.nil?
-
-        resource.rules.map(&:to_h)
+        resource&.rules&.map(&:to_h)
       end
     end
   end
