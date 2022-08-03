@@ -4,23 +4,27 @@ require_relative 'resource_test'
 
 class K8sRbacClusterRoleTest < ResourceTest
   STUB_DATA = {
-    'v1': {
-      default: {
-        clusterroles: [
-          {
+    'rbac.authorization.k8s.io/v1': {
+      clusterroles: [
+        {
+          name: 'role1',
+          kind: 'ClusterRole',
+          metadata: {
+            uid: 'abcd1234',
             name: 'role1',
-            kind: 'ClusterRole',
-            metadata: {
-              uid: 'abcd1234',
-              name: 'role1',
-              resourceVersion: 1234,
-              annotations: { annotation1: 'value1' },
-              labels: { label1: 'value1' },
-              creationTimestamp: '2022-07-28T10:54:46Z'
-            }
+            resourceVersion: 1234,
+            annotations: { annotation1: 'value1' },
+            labels: { label1: 'value1' },
+            creationTimestamp: '2022-07-28T10:54:46Z'
+          },
+          rules: [
+            { verbs: ['get', 'list', 'watch'] }
+          ],
+          aggregationRule: {
+            clusterRoleSelectors: []
           }
-        ]
-      }
+        }
+      ]
     }
   }.freeze
 
@@ -29,37 +33,46 @@ class K8sRbacClusterRoleTest < ResourceTest
   NAMESPACE = nil
 
   def test_uid
-    assert_equal('abcd1234', k8s_object.uid)
+    assert_equal('abcd1234', k8s_rbac_cluster_role.uid)
   end
 
   def test_kind
-    assert_equal('ClusterRole', k8s_object.kind)
+    assert_equal('ClusterRole', k8s_rbac_cluster_role.kind)
   end
 
   def test_name
-    assert_equal('role1', k8s_object.name)
+    assert_equal('role1', k8s_rbac_cluster_role.name)
   end
 
   def test_namespace
-    assert_nil(k8s_object.namespace)
+    assert_nil(k8s_rbac_cluster_role.namespace)
   end
 
   def test_resource_version
-    assert_equal(1234, k8s_object.resource_version)
+    assert_equal(1234, k8s_rbac_cluster_role.resource_version)
   end
 
   def test_has_label?
-    assert_equal(true, k8s_object.has_label?('label1', 'value1'))
+    assert_equal(true, k8s_rbac_cluster_role.has_label?('label1', 'value1'))
   end
 
   def test_has_annotation?
-    assert_equal(true, k8s_object.has_annotation?('annotation1', 'value1'))
+    assert_equal(true, k8s_rbac_cluster_role.has_annotation?('annotation1', 'value1'))
   end
 
   def test_creation_timestam
-    assert_equal('2022-07-28T10:54:46Z', k8s_object.creationTimestamp)
+    assert_equal('2022-07-28T10:54:46Z', k8s_rbac_cluster_role.creationTimestamp)
   end
 
-  # TODO: Writing test for rules, aggreation_rule is pending as currently we are unable to call those methods
-  # using k8s_object. Need to work on mocking the transport for specific resource.
+  def test_aggregation_rule
+    assert_equal({ clusterRoleSelectors: [] }, k8s_rbac_cluster_role.aggregation_rule)
+  end
+
+  def test_cluster_role_selectors
+    assert_equal([], k8s_rbac_cluster_role.cluster_role_selectors)
+  end
+
+  def test_rules
+    assert_equal([{ verbs: %w[get list watch] }], k8s_rbac_cluster_role.rules)
+  end
 end
