@@ -59,7 +59,7 @@ end
 : Metadata of the cluster role.
 
 `creation_timestamp`
-: Creation Timestamp pf the cluster role.
+: Creation timestamp of the cluster role.
 
 ## Examples
 
@@ -80,7 +80,7 @@ describe k8s_rbac_cluster_role(name: "pod-reader") do
 end
 ```
 
-### Test to verify aggregation rule is not empty and aggregation rule cluster role selectors have the given value
+### Test to verify aggregation rule is not empty and cluster role selectors have the specified value
 
 ```ruby
 describe k8s_rbac_cluster_role(name: "monitoring") do

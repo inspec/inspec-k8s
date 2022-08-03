@@ -11,7 +11,6 @@ platform = "k8s"
     parent = "inspec/resources/k8s"
 +++
 
-
 Use the `k8s_rbac_cluster_roles` Chef InSpec audit resource to test all the Role-based access control (RBAC) cluster roles.
 
 ## Installation
@@ -33,7 +32,7 @@ end
 : Resource type of the cluster roles.
 
 `resource_versions`
-: Resource version of the cluster role.
+: Resource version of the cluster roles.
 
 `labels`
 : Labels attached to the cluster roles.
@@ -54,7 +53,7 @@ end
 : Metadata of the cluster roles.
 
 `creation_timestamps`
-: Creation Timestamp pf the cluster roles.
+: Creation timestamp of the cluster roles.
 
 ## Examples
 
