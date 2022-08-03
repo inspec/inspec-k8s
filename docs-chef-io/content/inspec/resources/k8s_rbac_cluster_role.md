@@ -19,15 +19,12 @@ Use the `k8s_rbac_cluster_role` Chef InSpec audit resource to test the Role-base
 ## Syntax
 
 ```ruby
-describe k8s_rbac_cluster_role(namespace: "NAMESPACE", name: "NAME") do
+describe k8s_rbac_cluster_role(name: "NAME") do
   #...
 end
 ```
 
 ## Parameters
-
-`namespace`
-: Namespace of the resource (default is **default**).
 
 `name`
 : Cluster role name.

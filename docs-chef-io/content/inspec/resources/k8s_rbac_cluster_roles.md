@@ -24,11 +24,6 @@ describe k8s_rbac_cluster_roles do
 end
 ```
 
-## Parameters
-
-`namespace`
-: Namespace of the resource (default is **default**).
-
 ## Properties
 
 `uids`
