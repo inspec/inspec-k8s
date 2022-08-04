@@ -48,9 +48,11 @@ module Mock
         self
       end
 
-      def resource(type, namespace: 'default')
+      # namespace_hash has the key :namespace its value.
+      # if namespace is nil then the hash is empty.
+      def resource(type, namespace_hash = {})
         @type = type
-        @namespace = namespace
+        @namespace = namespace_hash[:namespace]
         self
       end
 
@@ -59,7 +61,11 @@ module Mock
       attr_reader :stub_data, :api_version, :type, :namespace, :raise_errors
 
       def current_data
-        stub_data.send(api_version).send(namespace).send(type) || {}
+        if namespace.nil?
+          stub_data.send(api_version).send(type) || {}
+        else
+          stub_data.send(api_version).send(namespace).send(type) || {}
+        end
       end
     end
   end
