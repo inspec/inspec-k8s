@@ -60,7 +60,7 @@ describe k8s_namespace(name: 'kube-node-lease') do
   it { should exist }
   its('uid') { should eq '5ed76d62-838b-45cb-b41f-789b567a2fa2' }
   its('name') { should eq 'kube-node-lease' }
-  its('kind') { should eq 'NAMESPACE' }
+  its('kind') { should eq 'Namespace' }
   its('resource_version') { should eq '6' }
   its('creationTimestamp') { should eq '2022-07-21T10:47:49Z' }
   its('labels') { should eq 'kubernetes.io/metadata.name': 'kube-node-lease' }

@@ -12,7 +12,7 @@ parent = "inspec/resources/k8s"
 +++
 
 
-Use the `k8s_deployment` Chef InSpec audit resource to test the configuration of a specific deployment in the specified namespace.
+Use the `k8s_deployment` Chef InSpec audit resource to test the configuration of a specific Deployment in the specified namespace.
 
 ## Installation
 
@@ -27,7 +27,7 @@ end
 ## Parameter
 
 `name`
-: Name of the deployment.
+: Name of the Deployment.
 
 `namespace`
 : Namespace of the resource (default: **default**).
@@ -35,31 +35,31 @@ end
 ## Properties
 
 `uid`
-: UID of the deployment.
+: UID of the Deployment.
 
 `name`
 : Deployment name.
 
 `namespace`
-: Namespace of the deployment.
+: Namespace of the Deployment.
 
 `resource_version`
-: Resource version of the deployment. This is an alias of `resourceVersion`.
+: Resource version of the Deployment. This is an alias of `resourceVersion`.
 
 `labels`
-: Labels associated with the deployment.
+: Labels associated with the Deployment.
 
 `annotations`
-: Annotations associated with the deployment.
+: Annotations associated with the Deployment.
 
 `kind`
-: Resource type of the deployment.
+: Resource type of the Deployment.
 
 `creation_timestamp`
-: Creation time of the deployment. This is an alias of `creationTimestamp`.
+: Creation time of the Deployment. This is an alias of `creationTimestamp`.
 
 `metadata`
-: Metadata for the deployment.
+: Metadata for the Deployment.
 
 ## Examples
 
@@ -73,7 +73,7 @@ describe k8s_deployment(name: 'NEW-DEPLOYMENT') do
   its('labels') { should eq :app=>'NEW-DEPLOYMENT' }
   its('annotations') { should_not be_empty }
   its('name') { should eq 'NEW-DEPLOYMENT' }
-  its('namespace') { should eq 'DEFAULT' }
+  its('namespace') { should eq 'default' }
   its('kind') { should eq 'DEPLOYMENT' }
   its('creation_timestamp') { should eq '2022-07-21T18:54:43Z' }
   its('metadata') { should_not be_nil }

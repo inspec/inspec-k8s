@@ -66,14 +66,14 @@ end
 ### Network policy for default namespace must exist and test its properties
 
 ```ruby
-describe k8s_network_policy(name: "test-network-policy") do
+describe k8s_network_policy(name: "TEST-NETWORK-POLICY") do
   it { should exist }
   its('uid') { should eq '0beb1fc6-8af7-4607-b3c0-2bff65d4abd6' }
   its('resource_version') { should eq '129558' }
   its('labels') { should be_empty }
   its('annotations') { should_not be_empty }
   its('name') { should eq 'TEST-NETWORK-POLICY' }
-  its('namespace') { should eq 'DEFAULT' }
+  its('namespace') { should eq 'default' }
   its('kind') { should eq 'NETWORKPOLICY' }
   its('creation_timestamp') { should eq '2022-08-02T09:47:56Z' }
   its('metadata') { should_not be_nil }
@@ -83,7 +83,7 @@ end
 ### Network Policy for a specified namespace must exist
 
 ```ruby
-describe k8s_network_policy(namespace: 'NAMESPACE', name: 'NETWORK-POLICY') do
+describe k8s_network_policy(namespace: 'Namespace', name: 'NETWORK-POLICY') do
   it { should exist }
 end
 ```

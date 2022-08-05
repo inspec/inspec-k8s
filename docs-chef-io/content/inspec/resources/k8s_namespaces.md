@@ -49,9 +49,9 @@ end
 describe k8s_namespaces do
   it { should exist }
   its('uids') { should include '5ed76d62-838b-45cb-b41f-789b567a2fa2' }
-  its('names') { should include 'DEFAULT' }
+  its('names') { should include 'default' }
   its('resource_versions') { should include '6' }
-  its('kinds') { should include 'NAMESPACE' }
+  its('kinds') { should include 'Namespace' }
   its('labels') { should include 'kubernetes.io/metadata.name': 'default' }
 end
 ```

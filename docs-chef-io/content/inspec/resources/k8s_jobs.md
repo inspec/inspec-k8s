@@ -11,7 +11,7 @@ identifier = "inspec/resources/k8s/K8s Jobs"
 parent = "inspec/resources/k8s"
 +++
 
-Use the `k8s_jobs` Chef InSpec audit resource to test the configurations of all jobs in a namespace.
+Use the `k8s_jobs` Chef InSpec audit resource to test the configurations of all Jobs in a namespace.
 
 ## Installation
 
@@ -26,30 +26,30 @@ end
 ## Parameter
 
 `namespace`
-: Namespace of the resource (default is **default**).
+: Namespace of the resource (default: **default**).
 
 ## Properties
 
 `uids`
-: UID of the jobs.
+: UID of the Jobs.
 
 `names`
-: Name of the jobs.
+: Name of the Jobs.
 
 `namespaces`
-: Namespace of the jobs.
+: Namespace of the Jobs.
 
 `resource_versions`
-: Resource version of the jobs.
+: Resource version of the Jobs.
 
 `labels`
-: Labels associated with the jobs.
+: Labels associated with the Jobs.
 
 `annotations`
-: Annotations associated with the jobs.
+: Annotations associated with the Jobs.
 
 `kinds`
-: Resource type of the jobs.
+: Resource type of the Jobs.
 
 ## Examples
 
@@ -60,7 +60,7 @@ describe k8s_jobs do
   it { should exist }
   its('names') { should include 'HELLO' }
   its('uids') { should include '378c1a39-cddc-4df6-bf5a-593779eb26fc' }
-  its('namespaces') { should include 'DEFAULT' }
+  its('namespaces') { should include 'default' }
   its('resource_versions') { should include '70517' }
   its('kinds') { should include 'JOB' }
   its('labels') { should_not be_empty }
@@ -71,7 +71,7 @@ end
 ### Jobs for specified namespace must exist
 
 ```ruby
-describe k8s_jobs(namespace: 'NAMESPACE') do
+describe k8s_jobs(namespace: 'Namespace') do
   it { should exist }
   its('names') { should include 'HELLO-WORLD' }
 end

@@ -11,7 +11,7 @@ identifier = "inspec/resources/k8s/K8s Deployments"
 parent = "inspec/resources/k8s"
 +++
 
-Use the `k8s_deployments` Chef InSpec audit resource to test the configurations of all deployments in a namespace.
+Use the `k8s_deployments` Chef InSpec audit resource to test the configurations of all Deployments in a namespace.
 
 ## Installation
 
@@ -31,25 +31,25 @@ end
 ## Properties
 
 `uids`
-: UID of the deployments.
+: UID of the Deployments.
 
 `names`
-: Name of the deployments.
+: Name of the Deployments.
 
 `namespaces`
-: Namespace of the deployments.
+: Namespace of the Deployments.
 
 `resource_versions`
-: Resource version of the deployments.
+: Resource version of the Deployments.
 
 `labels`
-: Labels associated with the deployments.
+: Labels associated with the Deployments.
 
 `annotations`
-: Annotations associated with the deployments.
+: Annotations associated with the Deployments.
 
 `kinds`
-: Resource type of the deployments.
+: Resource type of the Deployments.
 
 ## Examples
 

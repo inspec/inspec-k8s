@@ -20,7 +20,7 @@ Use the `k8s_network_policies` Chef InSpec audit resource to test the configurat
 ```ruby
 describe k8s_network_policies do
   it { should exist }
-  its('NAMES') { should include 'NETWORK-POLICY' }
+  its('names') { should include 'NETWORK-POLICY' }
 end
 ```
 
@@ -73,7 +73,7 @@ describe k8s_network_policies(namespace: 'NAMESPACE') do
   its('resource_versions') { should include '129558' }
   its('labels') { should_not be_empty }
   its('annotations') { should_not be_empty }
-  its('namespaces') { should include 'NAMESPACE' }
+  its('namespaces') { should include 'Namespace' }
   its('kinds') { should include 'NETWORKPOLICY' }
   its('metadata') { should_not be_nil }
 end

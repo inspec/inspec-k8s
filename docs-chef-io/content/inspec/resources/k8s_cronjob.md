@@ -73,7 +73,7 @@ describe k8s_cronjob(name: 'HELLO') do
   its('labels') { should be_empty }
   its('annotations') { should_not be_empty }
   its('name') { should eq 'HELLO' }
-  its('namespace') { should eq 'DEFAULT' }
+  its('namespace') { should eq 'default' }
   its('kind') { should eq 'CronJob' }
   its('creationTimestamp') { should eq '2022-07-27T12:54:44Z' }
   its('metadata') { should_not be_nil }
@@ -83,7 +83,7 @@ end
 ### Cronjob for a specified namespace must exist
 
 ```ruby
-describe k8s_cronjob(name: 'HELLO-WORLD', namespace: 'NAMESPACE') do
+describe k8s_cronjob(name: 'HELLO-WORLD', namespace: 'Namespace') do
   it { should exist }
 end
 ```
