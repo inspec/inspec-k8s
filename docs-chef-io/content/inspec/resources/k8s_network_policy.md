@@ -12,7 +12,7 @@ parent = "inspec/resources/k8s"
 +++
 
 
-Use the `k8s_network_policy` Chef InSpec audit resource to test the configuration of a specific Network Policy in the specified namespace.
+Use the `k8s_network_policy` Chef InSpec audit resource to test the configuration of a specific network policy in the specified namespace.
 
 ## Installation
 
@@ -27,43 +27,43 @@ end
 ## Parameter
 
 `name`
-: Name of the Network Policy.
+: Name of the network policy.
 
 `namespace`
-: Namespace of the resource (default is **default**).
+: Namespace of the resource (default: **default**).
 
 ## Properties
 
 `uid`
-: UID of the Network Policy.
+: UID of the network policy.
 
 `name`
-: Name of the Network Policy.
+: Name of the network policy.
 
 `namespace`
-: Namespace of the Network Policy.
+: Namespace of the network policy.
 
 `resource_version`
-: Resource version of the Network Policy. This is an alias of `resourceVersion`.
+: Resource version of the network policy. This is an alias of `resourceVersion`.
 
 `labels`
-: Labels associated with the Network Policy.
+: Labels associated with the network policy.
 
 `annotations`
-: Annotations associated with the Network Policy.
+: Annotations associated with the network policy.
 
 `kind`
-: Resource type of the Network Policy.
+: Resource type of the network policy.
 
 `creation_timestamp`
-: Creation time of the Network Policy. This is an alias of `creationTimestamp`.
+: Creation time of the network policy. This is an alias of `creationTimestamp`.
 
 `metadata`
-: Metadata for the Network Policy.
+: Metadata for the network policy.
 
 ## Examples
 
-### Network Policy for default namespace must exist and test its properties
+### Network policy for default namespace must exist and test its properties
 
 ```ruby
 describe k8s_network_policy(name: "test-network-policy") do
@@ -72,9 +72,9 @@ describe k8s_network_policy(name: "test-network-policy") do
   its('resource_version') { should eq '129558' }
   its('labels') { should be_empty }
   its('annotations') { should_not be_empty }
-  its('name') { should eq 'test-network-policy' }
-  its('namespace') { should eq 'default' }
-  its('kind') { should eq 'NetworkPolicy' }
+  its('name') { should eq 'TEST-NETWORK-POLICY' }
+  its('namespace') { should eq 'DEFAULT' }
+  its('kind') { should eq 'NETWORKPOLICY' }
   its('creation_timestamp') { should eq '2022-08-02T09:47:56Z' }
   its('metadata') { should_not be_nil }
 end
@@ -83,7 +83,7 @@ end
 ### Network Policy for a specified namespace must exist
 
 ```ruby
-describe k8s_network_policy(namespace: 'my-namespace', name: 'my-network-policy') do
+describe k8s_network_policy(namespace: 'NAMESPACE', name: 'NETWORK-POLICY') do
   it { should exist }
 end
 ```

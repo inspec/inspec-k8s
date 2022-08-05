@@ -30,7 +30,7 @@ end
 : Name of the DaemonSet.
 
 `namespace`
-: Namespace of the resource (default is **default**).
+: Namespace of the resource (default: **default**).
 
 ## Properties
 
@@ -73,7 +73,7 @@ describe k8s_daemon_set(name: 'fluentd-elasticsearch') do
   its('labels') { should eq 'k8s-app':'fluentd-logging' }
   its('annotations') { should_not be_empty }
   its('name') { should eq 'fluentd-elasticsearch' }
-  its('namespace') { should eq 'default' }
+  its('namespace') { should eq 'DEFAULT' }
   its('kind') { should eq 'DaemonSet' }
   its('creation_timestamp') { should eq '2022-07-31T16:41:21Z' }
 end

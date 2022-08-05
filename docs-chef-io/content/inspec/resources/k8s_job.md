@@ -12,14 +12,14 @@ parent = "inspec/resources/k8s"
 +++
 
 
-Use the `k8s_job` Chef InSpec audit resource to test the configuration of a specific Job in the specified namespace.
+Use the `k8s_job` Chef InSpec audit resource to test the configuration of a specific job in the specified namespace.
 
 ## Installation
 
 ## Syntax
 
 ```ruby
-describe k8s_job(name: 'hello') do
+describe k8s_job(name: 'HELLO') do
   it { should exist }
 end
 ```
@@ -27,39 +27,39 @@ end
 ## Parameter
 
 `name`
-: Name of the Job.
+: Name of the job.
 
 `namespace`
-: Namespace of the resource (default is **default**).
+: Namespace of the resource (default: **default**).
 
 ## Properties
 
 `uid`
-: UID of the Job.
+: UID of the job.
 
 `name`
-: Name of the Job.
+: Name of the job.
 
 `namespace`
-: Namespace of the Job.
+: Namespace of the job.
 
 `resource_version`
-: Resource version of the Job. This is an alias of `resourceVersion`.
+: Resource version of the job. This is an alias of `resourceVersion`.
 
 `labels`
-: Labels associated with the Job.
+: Labels associated with the job.
 
 `annotations`
-: Annotations associated with the Job.
+: Annotations associated with the job.
 
 `kind`
-: Resource type of the Job.
+: Resource type of the job.
 
 `creation_timestamp`
-: Creation time of the Job. This is an alias of `creationTimestamp`.
+: Creation time of the job. This is an alias of `creationTimestamp`.
 
 `metadata`
-: Metadata for the Job.
+: Metadata for the job.
 
 ## Examples
 
@@ -73,8 +73,8 @@ describe k8s_job(name: 'pi') do
   its('labels') { should_not be_empty }
   its('annotations') { should_not be_empty }
   its('name') { should eq 'pi' }
-  its('namespace') { should eq 'default' }
-  its('kind') { should eq 'Job' }
+  its('namespace') { should eq 'DEFAULT' }
+  its('kind') { should eq 'JOB' }
   its('creation_timestamp') { should eq '2022-08-02T12:05:40Z' }
 end
 ```
@@ -82,7 +82,7 @@ end
 ### Job for a specified namespace must exist
 
 ```ruby
-describe k8s_job(name: 'hello-world', namespace: 'my-namespace') do
+describe k8s_job(name: 'HELLO-WORLD', namespace: 'NAMESPACE') do
   it { should exist }
 end
 ```
