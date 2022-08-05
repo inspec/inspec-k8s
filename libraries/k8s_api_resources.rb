@@ -13,7 +13,7 @@ module Inspec
         describe k8s_api_resources(api: 'apps/v1') do
           it { should exist }
           its('name') { should include 'daemonsets' }
-          its('singularName') { should include "" }
+          its('singularName') { should include '' }
           its('namespaced') { should include true }
           its('group') { should include 'autoscaling' }
           its('version') { should include 'v1' }
@@ -21,7 +21,7 @@ module Inspec
           its('shortNames') { should include 'ds' }
           its('categories') { should include 'all' }
         end
-      
+
         describe k8s_api_resources do
           it { should exist }
           its('kind') { should include 'ConfigMap' }
@@ -54,15 +54,14 @@ module Inspec
       private
 
       def fetch_data
-        # TODO:
-        # Check how to use labelSelector
+        # @note: check how to use labelSelector
         catch_k8s_errors do
           @k8s_apis_obj = @k8s.client.api(@objapi).api_resources
         end
 
         return [] unless @k8s_apis_obj
 
-        @table = @k8s_apis_obj.map { |obj| obj.to_h }
+        @table = @k8s_apis_obj.map(&:to_h)
       end
 
       def populate_filter_table_from_response

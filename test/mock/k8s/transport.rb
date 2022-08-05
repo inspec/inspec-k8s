@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Mock for K8s API Client / Transport
 require 'ostruct'
 require 'json'
