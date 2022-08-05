@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require 'k8s_backend'
+require 'k8sobjects'
 
 module Inspec
   module Resources
     # k8s_api_resources class gets settings for specified kubernetes api resources.
-    class K8sApiResources < K8sResourceBase
+    class K8sApiResources < K8sObjects
       name 'k8s_api_resources'
       desc 'Verifies settings for specified kubernetes api resources'
 
@@ -27,19 +27,6 @@ module Inspec
           its('kind') { should include 'ConfigMap' }
         end
       "
-
-      # FilterTable is a class bound object so is this method.
-      # @param raw_data [Symbol] Method name of the table with raw data.
-      # @param table_scheme [Array] [{column: :blah, field: :blah}, {..}]
-      def self.populate_filter_table(raw_data, table_scheme)
-        filter_table = FilterTable.create
-        table_scheme.each do |col_field|
-          opts = { field: col_field[:field] }
-          opts[:style] = col_field[:style] if col_field[:style]
-          filter_table.register_column(col_field[:column], opts)
-        end
-        filter_table.install_filter_methods_on_resource(self, raw_data)
-      end
 
       attr_reader :k8s_apis_obj, :table
 
