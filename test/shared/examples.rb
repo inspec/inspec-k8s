@@ -4,6 +4,7 @@ require 'k8sobject'
 require 'k8sobjects'
 require 'k8s_rbac_cluster_role'
 require 'k8s_rbac_cluster_roles'
+require 'k8s_api_resources'
 
 module Shared
   module Examples
@@ -40,6 +41,13 @@ module Shared
         backend: Mock::K8s::Transport.new(stub_data: self.class::STUB_DATA),
         type: self.class::TYPE,
         namespace: self.class::NAMESPACE
+      )
+    end
+
+    def k8s_api_resources
+      @k8s_api_resources ||= Inspec::Resources::K8sApiResources.new(
+        backend: Mock::K8s::Transport.new(stub_data: self.class::STUB_DATA),
+        api: self.class::API
       )
     end
   end

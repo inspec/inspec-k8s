@@ -56,6 +56,10 @@ module Mock
         self
       end
 
+      def api_resources
+        [stub_data]
+      end
+
       private
 
       attr_reader :stub_data, :api_version, :type, :namespace, :raise_errors
