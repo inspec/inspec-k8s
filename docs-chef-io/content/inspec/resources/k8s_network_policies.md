@@ -20,7 +20,7 @@ Use the `k8s_network_policies` Chef InSpec audit resource to test the configurat
 ```ruby
 describe k8s_network_policies do
   it { should exist }
-  its('names') { should include 'NETWORK-POLICY' }
+  its('names') { should include 'my-network-policy' }
 end
 ```
 

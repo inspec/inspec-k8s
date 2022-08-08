@@ -18,7 +18,7 @@ Use the `k8s_namespace` Chef InSpec audit resource to test the configuration of 
 ## Syntax
 
 ```ruby
-describe k8s_namespace(name: 'DEFAULT') do
+describe k8s_namespace(name: 'default') do
   it { should exist }
 end
 ```
