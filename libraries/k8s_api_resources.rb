@@ -33,7 +33,6 @@ module Inspec
       def initialize(opts = {})
         super(opts)
         @objapi = opts[:api] if opts[:api] ||= 'v1'
-        @obj_label_selector = opts[:labelSelector] if opts[:labelSelector] ||= nil
         fetch_data
         populate_filter_table_from_response
       end
@@ -41,7 +40,6 @@ module Inspec
       private
 
       def fetch_data
-        # @note: check how to use labelSelector
         catch_k8s_errors do
           @k8s_apis_obj = @k8s.client.api(@objapi).api_resources
         end
