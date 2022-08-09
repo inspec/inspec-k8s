@@ -60,7 +60,7 @@ describe k8s_cronjobs do
   it { should exist }
   its('names') { should include 'HELLO' }
   its('uids') { should include '378c1a39-cddc-4df6-bf5a-593779eb26fc' }
-  its('namespaces') { should include 'deafult' }
+  its('namespaces') { should include 'default' }
   its('resource_versions') { should include '70517' }
   its('kinds') { should include 'CronJob' }
   its('labels') { should be_empty }
