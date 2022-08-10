@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Mock for K8s API Client / Transport
 require 'ostruct'
 require 'json'
@@ -54,6 +56,10 @@ module Mock
         @type = type
         @namespace = namespace_hash[:namespace]
         self
+      end
+
+      def api_resources
+        [stub_data]
       end
 
       private
