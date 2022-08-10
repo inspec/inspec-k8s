@@ -20,61 +20,61 @@ Use the `k8s_network_policies` Chef InSpec audit resource to test the configurat
 ```ruby
 describe k8s_network_policies do
   it { should exist }
-  its('names') { should include 'my-network-policy' }
+  its('names') { should include 'Network-Policy' }
 end
 ```
 
 ## Parameter
 
 `namespace`
-: Namespace of the resource (default is **default**).
+: Namespace of the resource (default: **default**).
 
 ## Properties
 
 `uids`
-: UID of the Network Policies.
+: UID of the network policies.
 
 `names`
-: Name of the Network Policies.
+: Name of the network policies.
 
 `namespaces`
-: Namespace of the Network Policies.
+: Namespace of the network policies.
 
 `resource_versions`
-: Resource version of the Network Policies.
+: Resource version of the network policies.
 
 `labels`
-: Labels associated with the Network Policies.
+: Labels associated with the network policies.
 
 `annotations`
-: Annotations associated with the Network Policies.
+: Annotations associated with the network policies.
 
 `kinds`
-: Resource type of the Network Policies.
+: Resource type of the network policies.
 
 ## Examples
 
-### NetworkPolicies for default namespace must exist
+### Network policies for default namespace must exist
 
 ```ruby
 describe k8s_network_policies do
   it { should exist }
-  its('names') { should include 'my-network-policy' }
+  its('names') { should include 'Network-Policy' }
 end
 ```
 
-### NetworkPolicies for specified namespace must exist and test its properties
+### Network policies for specified namespace must exist and test its properties
 
 ```ruby
-describe k8s_network_policies(namespace: 'my-namespace') do
+describe k8s_network_policies(namespace: 'NAMESPACE') do
   it { should exist }
-  its('names') { should include 'test-network-policy' }
+  its('names') { should include 'Network-Policy' }
   its('uids') { should include '0beb1fc6-8af7-4607-b3c0-2bff65d4abd6' }
   its('resource_versions') { should include '129558' }
   its('labels') { should_not be_empty }
   its('annotations') { should_not be_empty }
-  its('namespaces') { should include 'my-namespace' }
-  its('kinds') { should include 'NetworkPolicy' }
+  its('namespaces') { should include 'Namespace' }
+  its('kinds') { should include 'Network-Policy' }
   its('metadata') { should_not be_nil }
 end
 ```

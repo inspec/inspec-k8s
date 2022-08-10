@@ -26,7 +26,7 @@ end
 ## Parameter
 
 `namespace`
-: Namespace of the resource (default is **default**).
+: Namespace of the resource (default: **default**).
 
 ## Properties
 
@@ -58,11 +58,11 @@ end
 ```ruby
 describe k8s_jobs do
   it { should exist }
-  its('names') { should include 'hello' }
+  its('names') { should include 'HELLO' }
   its('uids') { should include '378c1a39-cddc-4df6-bf5a-593779eb26fc' }
   its('namespaces') { should include 'default' }
   its('resource_versions') { should include '70517' }
-  its('kinds') { should include 'Job' }
+  its('kinds') { should include 'JOB' }
   its('labels') { should_not be_empty }
   its('annotations') { should_not be_empty }
 end
@@ -71,9 +71,9 @@ end
 ### Jobs for specified namespace must exist
 
 ```ruby
-describe k8s_jobs(namespace: 'my-namespace') do
+describe k8s_jobs(namespace: 'Namespace') do
   it { should exist }
-  its('names') { should include 'hello-world' }
+  its('names') { should include 'HELLO-WORLD' }
 end
 ```
 

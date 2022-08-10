@@ -11,7 +11,7 @@ identifier = "inspec/resources/k8s/K8s Cronjobs"
 parent = "inspec/resources/k8s"
 +++
 
-Use the `k8s_cronjobs` Chef InSpec audit resource to test the configurations of all Cronjobs in a namespace.
+Use the `k8s_cronjobs` Chef InSpec audit resource to test the configurations of all CronJobs in a namespace.
 
 ## Installation
 
@@ -26,30 +26,30 @@ end
 ## Parameter
 
 `namespace`
-: Namespace of the resource (default is **default**).
+: Namespace of the resource (default: **default**).
 
 ## Properties
 
 `uids`
-: UID of the Cronjobs.
+: UID of the CronJobs.
 
 `names`
-: Name of the Cronjobs.
+: Name of the CronJobs.
 
 `namespaces`
-: Namespace of the Cronjobs.
+: Namespace of the CronJobs.
 
 `resource_versions`
-: Resource version of the Cronjobs.
+: Resource version of the CronJobs.
 
 `labels`
-: Labels associated with the Cronjobs.
+: Labels associated with the CronJobs.
 
 `annotations`
-: Annotations associated with the Cronjobs.
+: Annotations associated with the CronJobs.
 
 `kinds`
-: Resource type of the Cronjobs.
+: Resource type of the CronJobs.
 
 ## Examples
 
@@ -58,7 +58,7 @@ end
 ```ruby
 describe k8s_cronjobs do
   it { should exist }
-  its('names') { should include 'hello' }
+  its('names') { should include 'HELLO' }
   its('uids') { should include '378c1a39-cddc-4df6-bf5a-593779eb26fc' }
   its('namespaces') { should include 'default' }
   its('resource_versions') { should include '70517' }
@@ -71,9 +71,9 @@ end
 ### Cronjobs for specified namespace must exist
 
 ```ruby
-describe k8s_cronjobs(namespace: 'my-namespace') do
+describe k8s_cronjobs(namespace: 'Namespace') do
   it { should exist }
-  its('names') { should include 'hello-world' }
+  its('names') { should include 'HELLO-WORLD' }
 end
 ```
 

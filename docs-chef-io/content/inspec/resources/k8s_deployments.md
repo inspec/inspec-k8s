@@ -26,7 +26,7 @@ end
 ## Parameter
 
 `namespace`
-: Namespace of the resource (default is **default**).
+: Namespace of the resource (default: **default**).
 
 ## Properties
 
@@ -53,7 +53,7 @@ end
 
 ## Examples
 
-### Deployments for default namespace must exist
+### Deployments for the default namespace must exist
 
 ```ruby
 describe k8s_deployments do
@@ -73,7 +73,7 @@ describe k8s_deployments(namespace: 'kube-system') do
   its('annotations') { should_not be_empty }
   its('names') { should include 'coredns' }
   its('namespaces') { should include 'kube-system' }
-  its('kinds') { should include 'Deployment' }
+  its('kinds') { should include 'DEPLOYMENT' }
 end
 ```
 

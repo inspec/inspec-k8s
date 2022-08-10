@@ -19,7 +19,7 @@ Use the `k8s_job` Chef InSpec audit resource to test the configuration of a spec
 ## Syntax
 
 ```ruby
-describe k8s_job(name: 'hello') do
+describe k8s_job(name: 'HELLO') do
   it { should exist }
 end
 ```
@@ -30,7 +30,7 @@ end
 : Name of the Job.
 
 `namespace`
-: Namespace of the resource (default is **default**).
+: Namespace of the resource (default: **default**).
 
 ## Properties
 
@@ -74,7 +74,7 @@ describe k8s_job(name: 'pi') do
   its('annotations') { should_not be_empty }
   its('name') { should eq 'pi' }
   its('namespace') { should eq 'default' }
-  its('kind') { should eq 'Job' }
+  its('kind') { should eq 'JOB' }
   its('creation_timestamp') { should eq '2022-08-02T12:05:40Z' }
 end
 ```
@@ -82,7 +82,7 @@ end
 ### Job for a specified namespace must exist
 
 ```ruby
-describe k8s_job(name: 'hello-world', namespace: 'my-namespace') do
+describe k8s_job(name: 'HELLO-WORLD', namespace: 'Namespace') do
   it { should exist }
 end
 ```

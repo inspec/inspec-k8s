@@ -11,7 +11,7 @@ identifier = "inspec/resources/k8s/K8s Namespaces"
 parent = "inspec/resources/k8s"
 +++
 
-Use the `k8s_namespaces` Chef InSpec audit resource to test the configurations of all Namespaces.
+Use the `k8s_namespaces` Chef InSpec audit resource to test the configurations of all namespaces.
 
 ## Installation
 
@@ -20,30 +20,30 @@ Use the `k8s_namespaces` Chef InSpec audit resource to test the configurations o
 ```ruby
 describe k8s_namespaces do
   it { should exist }
-  its('names') { should include 'default' }
+  its('names') { should include 'DEFAULT' }
 end
 ```
 
 ## Properties
 
 `uids`
-: UID of the Namespaces.
+: UID of the namespaces.
 
 `names`
-: Name of the Namespaces.
+: Name of the namespaces.
 
 `resource_versions`
-: Resource version of the Namespaces.
+: Resource version of the namespaces.
 
 `labels`
-: Labels associated with the Namespaces.
+: Labels associated with the namespaces.
 
 `kinds`
-: Resource type of the Namespaces.
+: Resource type of the namespaces.
 
 ## Examples
 
-### Namespaces must exist and test its properties.
+### Namespaces must exist and test their properties
 
 ```ruby
 describe k8s_namespaces do

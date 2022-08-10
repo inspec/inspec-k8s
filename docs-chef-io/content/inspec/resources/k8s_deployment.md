@@ -27,10 +27,10 @@ end
 ## Parameter
 
 `name`
-: Name of the deployment.
+: Name of the Deployment.
 
 `namespace`
-: Namespace of the resource (default is **default**).
+: Namespace of the resource (default: **default**).
 
 ## Properties
 
@@ -38,7 +38,7 @@ end
 : UID of the Deployment.
 
 `name`
-: Name of the Deployment.
+: Deployment name.
 
 `namespace`
 : Namespace of the Deployment.
@@ -66,15 +66,15 @@ end
 ### Deployment for default namespace must exist and test its properties
 
 ```ruby
-describe k8s_deployment(name: 'new-deployment') do
+describe k8s_deployment(name: 'NEW-DEPLOYMENT') do
   it { should exist }
   its('uid') { should eq 'e948355b-adc2-4db8-af16-34f5aa38d6ec' }
   its('resource_version') { should eq '8107' }
-  its('labels') { should eq :app=>'new-deployment' }
+  its('labels') { should eq :app=>'NEW-DEPLOYMENT' }
   its('annotations') { should_not be_empty }
-  its('name') { should eq 'new-deployment' }
+  its('name') { should eq 'NEW-DEPLOYMENT' }
   its('namespace') { should eq 'default' }
-  its('kind') { should eq 'Deployment' }
+  its('kind') { should eq 'DEPLOYMENT' }
   its('creation_timestamp') { should eq '2022-07-21T18:54:43Z' }
   its('metadata') { should_not be_nil }
 end

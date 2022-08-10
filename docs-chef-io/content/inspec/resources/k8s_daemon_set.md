@@ -30,7 +30,7 @@ end
 : Name of the DaemonSet.
 
 `namespace`
-: Namespace of the resource (default is **default**).
+: Namespace of the resource (default: **default**).
 
 ## Properties
 
