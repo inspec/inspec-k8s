@@ -44,7 +44,7 @@ module Inspec
           @k8s_apis_obj = @k8s.client.api(@objapi).api_resources
         end
 
-        return [] unless @k8s_apis_obj
+        return unless @k8s_apis_obj
 
         @table = @k8s_apis_obj.map(&:to_h)
       end
