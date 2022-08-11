@@ -20,6 +20,43 @@ class K8sContainersTest < ResourceTest
               resourceVersion: 1234,
               annotations: {},
               labels: {}
+            },
+            spec: {
+              containers: {
+                name: "coredns",
+                image: "k8s.gcr.io/coredns/coredns:v1.8.4",
+                args: ["-conf", "/etc/coredns/Corefile"],
+                ports:
+                  [{:name=>"dns", :containerPort=>53, :protocol=>"UDP"},
+                   {:name=>"dns-tcp", :containerPort=>53, :protocol=>"TCP"},
+                   {:name=>"metrics", :containerPort=>9153, :protocol=>"TCP"}],
+                resources: {:limits=>{:memory=>"170Mi"}, :requests=>{:cpu=>"100m", :memory=>"70Mi"}},
+                volumeMounts:
+                  [{:name=>"config-volume", :readOnly=>true, :mountPath=>"/etc/coredns"},
+                   {:name=>"kube-api-access-lzl5n",
+                    :readOnly=>true,
+                    :mountPath=>"/var/run/secrets/kubernetes.io/serviceaccount"}],
+                livenessProbe:
+                  {:httpGet=>{:path=>"/health", :port=>8080, :scheme=>"HTTP"},
+                   :initialDelaySeconds=>60,
+                   :timeoutSeconds=>5,
+                   :periodSeconds=>10,
+                   :successThreshold=>1,
+                   :failureThreshold=>5},
+                readinessProbe:
+                  {:httpGet=>{:path=>"/ready", :port=>8181, :scheme=>"HTTP"},
+                   :timeoutSeconds=>1,
+                   :periodSeconds=>10,
+                   :successThreshold=>1,
+                   :failureThreshold=>3},
+                terminationMessagePath: "/dev/termination-log",
+                terminationMessagePolicy: "File",
+                imagePullPolicy: "IfNotPresent",
+                securityContext:
+                  {:capabilities=>{:add=>["NET_BIND_SERVICE"], :drop=>["all"]},
+                   :readOnlyRootFilesystem=>true,
+                   :allowPrivilegeEscalation=>false}
+              }
             }
           }
         ]
@@ -29,32 +66,45 @@ class K8sContainersTest < ResourceTest
 
   TYPE = 'pods'
 
-  def test_uids
-    assert_includes(k8s_objects.uids, 'abcd1234')
-  end
 
   def test_names
     assert_includes(k8s_objects.names, 'pod1')
   end
 
-  def test_namespaces
-    assert_includes(k8s_objects.namespaces, 'default')
+  def test_images
+    assert_equal('default', k8s_object.images)
   end
 
-  def test_kinds
-    assert_includes(k8s_objects.kinds, 'pod')
+  def test_commands
+    assert_equal('pod', k8s_object.commands)
   end
 
-  def test_resource_versions
-    assert_includes(k8s_objects.resource_versions, 1234)
+  def test_args
+    assert_equal(1234, k8s_object.args)
   end
 
-  def test_labels
-    assert_includes(k8s_objects.labels, {})
+  def test_resources
+    assert_equal(k8s_object.resources, {})
   end
 
-  def test_annotations
-    assert_includes(k8s_objects.annotations, {})
+  def test_volumeMounts
+    assert_equal(k8s_object.volumeMounts, {})
+  end
+
+  def test_livenessProbes
+    assert_equal(k8s_object.livenessProbes, {})
+  end
+
+  def test_readinessProbes
+    assert_equal(k8s_object.readinessProbes, {})
+  end
+
+  def test_imagePullPolicies
+    assert_equal(k8s_object.imagePullPolicies, {})
+  end
+
+  def test_securityContexts
+    assert_equal(k8s_object.securityContexts, {})
   end
 end
 
