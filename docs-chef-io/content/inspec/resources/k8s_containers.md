@@ -1,25 +1,24 @@
 +++
-title = "k8s_container resource"
+title = "k8s_containers resource"
 draft = false
 gh_repo = "inspec"
 platform = "k8s"
 
 [menu]
 [menu.inspec]
-title = "k8s_container"
-identifier = "inspec/resources/k8s/K8s Container"
+title = "k8s_containers"
+identifier = "inspec/resources/k8s/K8s Containers"
 parent = "inspec/resources/k8s"
 +++
 
-
-Use the `k8s_container` Chef InSpec audit resource to test the configuration of a specific Container in the specified namespace.
+Use the `k8s_containers` Chef InSpec audit resource to test the configurations of all Containers in a namespace.
 
 ## Installation
 
 ## Syntax
 
 ```ruby
-describe k8s_container(namespace: "NAMESPACE", name: "NAME") do
+describe k8s_containers do
   #...
 end
 ```
@@ -51,18 +50,22 @@ end
 
 ## Examples
 
-### Container for default namespace must exist
+### Containers for default namespace must exist
 
 ```ruby
- describe k8s_container(name: 'NAME') do
+ describe k8s_containers do
   it { should exist }
 end
 ```
 
-### Container for a specified namespace must exist
+### Containers for specified namespace must exist
 
 ```ruby
-describe k8s_container(namespace: 'NAMESPACE', name: 'NAME') do
+describe k8s_containers(namespace: 'kube-system') do
   it { should exist }
 end
 ```
+
+## Matchers
+
+{{% inspec/inspec_matchers_link %}}
