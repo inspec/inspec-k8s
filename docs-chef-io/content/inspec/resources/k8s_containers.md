@@ -30,23 +30,35 @@ end
 
 ## Properties
 
-`uid`
-: UID of the Container.
-
-`name`
+`names`
 : Name of the Container.
 
-`namespace`
+`images`
 : Namespace of the Container.
 
-`resource_version`
+`commands`
 : Resource version of the Container.
 
-`kind`
+`args`
 : Resource type of the Container.
 
-`metadata`
+`resources`
 : Metadata for the Container.
+
+`volumeMounts`
+: Pod volumes to mount into the container's filesystem
+
+`livenessProbes`
+: Periodic probe of container liveness
+
+`readinessProbes`
+: Periodic probe of container service readiness
+
+`imagePullPolicies`
+: Image pull policy, One of Always, Never, IfNotPresent
+
+`securityContexts`
+: Security options the pod should run with
 
 ## Examples
 
