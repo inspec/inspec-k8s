@@ -57,7 +57,7 @@ module Inspec
           getobjects
         end
 
-        return [] unless @k8sobjects
+        return unless @k8sobjects
 
         @table = build_table
       end
