@@ -24,9 +24,12 @@ module Inspec
         set_resource
       end
 
+      delegate :name, :image, :command, :args, :resources, :volumeMounts, :livenessProbe, :readinessProbe,
+               :imagePullPolicy, :securityContext, to: :resource
+
       private
       def set_resource
-        @k8sobject = @k8sobject.spec.containers.select{|container| container.name == @container_name }
+        @k8sobject = @k8sobject.spec.containers.detect{|container| container.name == @container_name }
       end
     end
   end

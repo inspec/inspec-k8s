@@ -38,6 +38,10 @@ module Inspec
           build_record_from(obj)
         end
       end
+
+      def build_record_from(obj)
+        obj.to_h
+      end
     end
   end
 end
