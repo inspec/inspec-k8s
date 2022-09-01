@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'resource_test'
+require_relative '../../../libraries/k8s_containers'
 
 class K8sContainersTest < ResourceTest
   STUB_DATA = {
@@ -72,39 +73,47 @@ class K8sContainersTest < ResourceTest
   end
 
   def test_images
-    assert_equal('default', k8s_object.images)
+    assert_equal('default', k8s_objects.images)
   end
 
   def test_commands
-    assert_equal('pod', k8s_object.commands)
+    assert_equal('pod', k8s_objects.commands)
   end
 
   def test_args
-    assert_equal(1234, k8s_object.args)
+    assert_equal(1234, k8s_objects.args)
   end
 
   def test_resources
-    assert_equal(k8s_object.resources, {})
+    assert_equal(k8s_objects.resources, {})
   end
 
   def test_volumeMounts
-    assert_equal(k8s_object.volumeMounts, {})
+    assert_equal(k8s_objects.volumeMounts, {})
   end
 
   def test_livenessProbes
-    assert_equal(k8s_object.livenessProbes, {})
+    assert_equal(k8s_objects.livenessProbes, {})
   end
 
   def test_readinessProbes
-    assert_equal(k8s_object.readinessProbes, {})
+    assert_equal(k8s_objects.readinessProbes, {})
   end
 
   def test_imagePullPolicies
-    assert_equal(k8s_object.imagePullPolicies, {})
+    assert_equal(k8s_objects.imagePullPolicies, {})
   end
 
   def test_securityContexts
-    assert_equal(k8s_object.securityContexts, {})
+    assert_equal(k8s_objects.securityContexts, {})
+  end
+
+  private
+
+  def k8s_objects
+    @k8s_objects ||= Inspec::Resources::K8sContainers.new(
+      backend: Mock::K8s::Transport.new(stub_data: STUB_DATA)
+    )
   end
 end
 
