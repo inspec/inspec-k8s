@@ -34,16 +34,16 @@ end
 : Name of the Container.
 
 `images`
-: Namespace of the Container.
+: Container image name.
 
 `commands`
-: Resource version of the Container.
+: Entrypoint array.
 
 `args`
-: Resource type of the Container.
+: Arguments to the entrypoint.
 
 `resources`
-: Metadata for the Container.
+: Compute Resources required by this container.
 
 `volumeMounts`
 : Pod volumes to mount into the container's filesystem

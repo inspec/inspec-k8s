@@ -19,7 +19,7 @@ Use the `k8s_container` Chef InSpec audit resource to test the configuration of 
 ## Syntax
 
 ```ruby
-describe k8s_container(namespace: "NAMESPACE", name: "NAME") do
+describe k8s_container(namespace: "NAMESPACE", pod_name: 'POD_NAME', name: "NAME") do
   #...
 end
 ```
@@ -28,6 +28,12 @@ end
 
 `namespace`
 : Namespace of the resource.
+
+`pod_name`
+: Pod Name of the resource
+
+`container_name`
+: Container Name of the resource
 
 ## Properties
 
@@ -55,7 +61,7 @@ end
 `readinessProbe`
 : Periodic probe of container service readiness
 
-`imagePullPolicie`
+`imagePullPolicy`
 : Image pull policy, One of Always, Never, IfNotPresent
 
 `securityContext`
