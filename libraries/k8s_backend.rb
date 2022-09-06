@@ -6,6 +6,7 @@
 #
 
 require 'json'
+require "inspec/resource"
 
 # Base class for K8s resources - depends on train K8s transport for connection
 class K8sResourceBase < Inspec.resource(1)

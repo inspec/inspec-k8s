@@ -85,27 +85,27 @@ class K8sContainersTest < ResourceTest
   end
 
   def test_resources
-    assert_equal(k8s_objects.resources, {})
+    assert_equal(k8s_objects.resources, [])
   end
 
   def test_volumeMounts
-    assert_equal(k8s_objects.volumeMounts, {})
+    assert_equal(k8s_objects.volumeMounts, [])
   end
 
   def test_livenessProbes
-    assert_equal(k8s_objects.livenessProbes, {})
+    assert_equal(k8s_objects.livenessProbes, [])
   end
 
   def test_readinessProbes
-    assert_equal(k8s_objects.readinessProbes, {})
+    assert_equal(k8s_objects.readinessProbes, [])
   end
 
   def test_imagePullPolicies
-    assert_equal(k8s_objects.imagePullPolicies, {})
+    assert_equal(k8s_objects.imagePullPolicies, [])
   end
 
   def test_securityContexts
-    assert_equal(k8s_objects.securityContexts, {})
+    assert_equal(k8s_objects.securityContexts, [])
   end
 
   private
