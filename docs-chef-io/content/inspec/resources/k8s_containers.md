@@ -78,6 +78,15 @@ describe k8s_containers(namespace: 'kube-system') do
 end
 ```
 
+### Containers with readOnlyRootFilesystem exists
+
+```ruby
+describe k8s_containers(namespace: 'kube-system').where{ securityContext && securityContext[:readOnlyRootFilesystem] == true } do 
+  it { should exist }
+end
+
+```
+
 ## Matchers
 
 {{% inspec/inspec_matchers_link %}}

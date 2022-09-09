@@ -41,16 +41,16 @@ end
 : Name of the Container.
 
 `image`
-: Namespace of the Container.
+: Container image name.
 
 `command`
-: Resource version of the Container.
+: Entrypoint array.
 
 `arg`
-: Resource type of the Container.
+: Arguments to the entrypoint.
 
 `resource`
-: Metadata for the Container.
+: Compute Resources required by this container.
 
 `volumeMount`
 : Pod volumes to mount into the container's filesystem
@@ -72,7 +72,7 @@ end
 ### Container for default namespace must exist
 
 ```ruby
- describe k8s_container(name: 'NAME') do
+ describe k8s_container(pod_name: 'POD_NAME', name: 'NAME') do
   it { should exist }
 end
 ```
@@ -80,7 +80,15 @@ end
 ### Container for a specified namespace must exist
 
 ```ruby
-describe k8s_container(namespace: 'NAMESPACE', name: 'NAME') do
+describe k8s_container(namespace: 'NAMESPACE', name: 'NAME', pod_name: 'POD_NAME') do
   it { should exist }
+end
+```
+
+### Check for presence of specific commands in Entrypoint array
+
+```ruby
+ describe k8s_container(pod_name: 'POD_NAME', name: 'NAME') do
+  it { should_have_command?('COMMAND') }
 end
 ```
