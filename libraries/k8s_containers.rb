@@ -21,18 +21,6 @@ module Inspec
         its('names') { should include 'hello-world' }
       end
     "
-      table_schema = [
-        { column: :volumeMounts, field: :volumeMounts },
-        { column: :imagePullPolicies, field: :imagePullPolicy },
-        { column: :commands, field: :commands },
-        { column: :resources, field: :resources },
-        { column: :livenessProbes, field: :livenessProbe },
-        { column: :readinessProbes, field: :readinessProbe },
-        { column: :securityContexts, field: :securityContext },
-        { column: :args, field: :args }
-      ]
-      self.populate_filter_table(:table, table_schema)
-
       def initialize(opts = {})
         opts[:type] = 'pods'
         super(opts)
