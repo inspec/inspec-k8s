@@ -27,6 +27,21 @@ module Inspec
       delegate :name, :image, :command, :args, :resources, :volumeMounts, :livenessProbe, :readinessProbe,
                :imagePullPolicy, :securityContext, to: :resource
 
+      def has_volume_mounts?(name, read_only: nil, mount_path: nil)
+        return false if volumeMounts.blank?
+
+        volume_mount = volumeMounts.detect do |vm|
+          vm.name == name
+        end
+
+        return false unless volume_mount
+
+        return false if read_only && volume_mount.readOnly != read_only
+        return false if mount_path && volume_mount.mountPath != mount_path
+
+        true
+      end
+
       private
       def set_resource
         @k8sobject = @k8sobject.spec.containers.detect{|container| container.name == @container_name }
