@@ -42,6 +42,18 @@ module Inspec
         true
       end
 
+      def has_args?(arg_string)
+        return false if args.blank?
+
+        args.include?(arg_string)
+      end
+
+      def has_command?(command_string)
+        return false if command.blank?
+
+        command.include?(command_string)
+      end
+
       private
       def set_resource
         @k8sobject = @k8sobject.spec.containers.detect{|container| container.name == @container_name }
