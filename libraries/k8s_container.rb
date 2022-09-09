@@ -16,7 +16,7 @@ module Inspec
     "
 
       def initialize(opts = {})
-        Validators.validate_params_required(@__resource_name__, [:pod_name, :name], opts)
+        Validators.validate_params_required(@__resource_name__, %i[pod_name name], opts)
         opts[:type] = 'pods'
         @container_name = opts[:name]
         opts[:name] = opts[:pod_name]
@@ -54,11 +54,26 @@ module Inspec
         command.include?(command_string)
       end
 
+      def has_port?(name, container_port: nil, protocol: nil)
+        return false if ports.blank?
+
+        port = ports.detect do |port_obj|
+          port_obj.name == name
+        end
+
+        return false unless port
+
+        return false if container_port && port.container_port != container_port
+        return false if protocol && port.protocol != protocol
+
+        true
+      end
+
       private
+
       def set_resource
-        @k8sobject = @k8sobject.spec.containers.detect{|container| container.name == @container_name }
+        @resource = @k8sobject = @k8sobject.spec.containers.detect { |container| container.name == @container_name }
       end
     end
   end
 end
-
