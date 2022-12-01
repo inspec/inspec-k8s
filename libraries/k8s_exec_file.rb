@@ -1,6 +1,8 @@
 # frozen_string_literal: true
-require 'train-kubernetes/file/linux'
+
 require 'inspec/resources/file'
+require 'train-kubernetes/file/linux_permissions'
+require 'train-kubernetes/file/linux_immutable_file_check'
 
 module Inspec
   module Resources
@@ -31,13 +33,24 @@ module Inspec
         @namespace = opts[:namespace]
         Validators.validate_params_required(@__resource_name__, %i[pod path], opts)
         @file = inspec.backend.file(path, pod: pod, container: container, namespace: namespace)
-        @perms_provider = ::Inspec::Resources::UnixFilePermissions.new(inspec)
+        @perms_provider = ::TrainPlugins::TrainKubernetes::File::LinuxPermissions.new(inspec,
+                                                                                      pod: pod,
+                                                                                      container: container,
+                                                                                      namespace: namespace)
+      end
+
+      def immutable?
+        file_info = ::TrainPlugins::TrainKubernetes::File::LinuxImmutableFileCheck.new(inspec,
+                                                                                       file,
+                                                                                       pod: pod,
+                                                                                       container: container,
+                                                                                       namespace: namespace)
+        file_info.is_immutable?
       end
 
       private
 
-      attr_reader :pod, :container, :namespace, :path
+      attr_reader :pod, :container, :namespace, :path, :file
     end
   end
 end
-
