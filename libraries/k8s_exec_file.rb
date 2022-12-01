@@ -3,10 +3,12 @@
 require 'inspec/resources/file'
 require 'train-kubernetes/file/linux_permissions'
 require 'train-kubernetes/file/linux_immutable_file_check'
+require 'inspec/utils/parser'
 
 module Inspec
   module Resources
     class K8sExecFile < ::Inspec::Resources::FileResource
+      include ::Inspec::Utils::LinuxMountParser
       attr_reader :opts
 
       name 'k8s_exec_file'
@@ -46,6 +48,24 @@ module Inspec
                                                                                        container: container,
                                                                                        namespace: namespace)
         file_info.is_immutable?
+      end
+
+      def mounted?(expected_options = nil, identical = false)
+        mounted = file.mounted
+
+        # return if no additional parameters have been provided
+        return file.mounted? if expected_options.nil?
+
+        # parse content if we are on linux
+        @mount_options ||= parse_mount_options(mounted.stdout, true)
+
+        if identical
+          # check if the options should be identical
+          @mount_options == expected_options
+        else
+          # otherwise compare the selected values
+          @mount_options.contains(expected_options)
+        end
       end
 
       private
