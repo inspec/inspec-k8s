@@ -40,10 +40,6 @@ module Inspec
               "Command `#{command}` timed out after #{@timeout} seconds"
       end
 
-      def exit_status
-        result&.exitstatus
-      end
-
       private
 
       attr_reader :pod, :container, :namespace, :command
