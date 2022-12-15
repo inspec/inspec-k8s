@@ -35,6 +35,20 @@ describe k8sobject(api: 'v1', type: 'pod', namespace: 'default', name: 'my-pod')
 end
 ```
 
+In order to use file resource against a file inside the pod. This is useful to identify permissions, owner, type etc..
+Currently it supports only Linux based containers.
+```ruby 
+describe k8s_exec_file(path: 'FULLY_QUALIFIED_PATH', pod: 'POD_NAME', namespace: 'NAMESPACE_NAME') do
+  it { should exist }
+  it { should be_file }
+  it { should be_readable }
+  it { should be_writable }
+  it { should be_executable.by_user('root') }
+  it { should be_owned_by 'root' }
+  its('mode') { should cmp '0644' }
+end
+```
+
 ## Preconditions
 
 - Inspec 3.7+ or 4.x+
