@@ -7,7 +7,7 @@ platform = "k8s"
 [menu]
 [menu.inspec]
 title = "k8sobjects"
-identifier = "inspec/resources/k8s/K8s Object"
+identifier = "inspec/resources/k8s/K8s Objects"
 parent = "inspec/resources/k8s"
 +++
 
