@@ -37,7 +37,7 @@ end
 
 In order to use file resource against a file inside the pod. This is useful to identify permissions, owner, type etc..
 Currently it supports only Linux based containers.
-```ruby 
+```ruby
 describe k8s_exec_file(path: 'FULLY_QUALIFIED_PATH', pod: 'POD_NAME', namespace: 'NAMESPACE_NAME') do
   it { should exist }
   it { should be_file }
@@ -56,7 +56,7 @@ end
 
 ## Using with an Inspec Profile
 
-Refer to the [sample inspec-k8s profile](https://github.com/bgeesaman/inspec-k8s-sample).
+Refer to the [sample inspec-k8s profile](https://github.com/inspec/inspec-k8s-sample).
 
 ## Troubleshooting
 
