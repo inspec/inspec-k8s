@@ -44,8 +44,8 @@ module Inspec
         end
       end
 
-      delegate :kind, :metadata, to: :resource
-      delegate :uid, :name, :namespace, :resourceVersion, :creationTimestamp, to: :metadata
+      delegate :kind, :metadata, to: :resource, allow_nil: true
+      delegate :uid, :name, :namespace, :resourceVersion, :creationTimestamp, to: :metadata, allow_nil: true
 
       alias resource_version resourceVersion
       alias creation_timestamp creationTimestamp
