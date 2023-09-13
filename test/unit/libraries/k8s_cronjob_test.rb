@@ -59,4 +59,8 @@ class K8sCronjobTest < ResourceTest
   def test_creation_timestamp
     assert_equal('2022-07-21T10:47:49Z', k8s_object.creationTimestamp)
   end
+
+  def test_resource_id
+    refute_nil(k8s_object.resource_id)
+  end
 end

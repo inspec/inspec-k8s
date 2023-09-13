@@ -62,4 +62,8 @@ class K8sNetworkPolicyTest < ResourceTest
   def test_creation_timestamp
     assert_equal('2022-08-02T09:47:56Z', k8s_object.creation_timestamp)
   end
+
+  def test_resource_id
+    refute_nil(k8s_object.resource_id)
+  end
 end

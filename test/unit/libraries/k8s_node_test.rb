@@ -53,4 +53,8 @@ class K8sNodeTest < ResourceTest
   def test_has_annotation?
     assert_equal(true, k8s_object.has_annotation?('annotation1', 'value1'))
   end
+
+  def test_resource_id
+    refute_nil(k8s_object.resource_id)
+  end
 end

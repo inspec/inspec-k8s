@@ -44,4 +44,8 @@ class K8sNamespacesTest < ResourceTest
   def test_labels
     assert_includes(k8s_objects.labels, { 'kubernetes.io/metadata.name': 'kube-node-lease' })
   end
+
+  def test_resource_id
+    refute_nil(k8s_objects.resource_id)
+  end
 end

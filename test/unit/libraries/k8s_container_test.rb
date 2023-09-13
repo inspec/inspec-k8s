@@ -117,6 +117,10 @@ class K8sContainerTest < ResourceTest
     assert(k8s_object.has_command?('printenv'))
   end
 
+  def test_resource_id
+    refute_nil(k8s_object.resource_id)
+  end
+
   private
 
   def k8s_object

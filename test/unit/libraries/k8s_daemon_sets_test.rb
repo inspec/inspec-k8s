@@ -53,4 +53,8 @@ class K8sDaemonSetsTest < ResourceTest
   def test_kinds
     assert_includes(k8s_objects.kinds, 'DaemonSet')
   end
+
+  def test_resource_id
+    refute_nil(k8s_objects.resource_id)
+  end
 end
