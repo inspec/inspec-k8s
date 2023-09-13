@@ -47,5 +47,9 @@ module Inspec::Resources
     def to_s
       @display_name.to_s
     end
+
+    def resource_id
+      @display_name.to_s || 'k8sversion'
+    end
   end
 end

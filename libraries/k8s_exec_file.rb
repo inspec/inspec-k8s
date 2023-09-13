@@ -68,6 +68,8 @@ module Inspec
         end
       end
 
+      # NOTE: Here, the resource_id is used from the parent class.
+
       private
 
       attr_reader :pod, :container, :namespace, :path, :file

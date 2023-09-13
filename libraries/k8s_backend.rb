@@ -6,7 +6,7 @@
 #
 
 require 'json'
-require "inspec/resource"
+require 'inspec/resource'
 
 # Base class for K8s resources - depends on train K8s transport for connection
 class K8sResourceBase < Inspec.resource(1)
@@ -46,6 +46,10 @@ class K8sResourceBase < Inspec.resource(1)
     fail_resource error['error']['message']
     @failed_resource = true
     nil
+  end
+
+  def resource_id
+    'k8s_resource_base'
   end
 end
 

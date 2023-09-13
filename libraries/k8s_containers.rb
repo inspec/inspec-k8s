@@ -44,4 +44,3 @@ module Inspec
     end
   end
 end
-

@@ -75,6 +75,10 @@ module Inspec
         entries
       end
 
+      def resource_id
+        @objname || @objnamespace || @objtype || 'k8sobjects'
+      end
+
       private
 
       def populate_filter_table_from_response
