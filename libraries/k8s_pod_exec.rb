@@ -42,7 +42,9 @@ module Inspec
       end
 
       def resource_id
-        opts[:pod] || opts[:container] || opts[:command] || 'k8s_pod_exec'
+        # Note: Hashing the command to hide any secrets
+        cmd_hash = Digest::SHA256.hexdigest(command)
+        "#{pod}-#{container}-#{cmd_hash}" || 'k8s_pod_exec'
       end
 
       private
