@@ -76,7 +76,7 @@ module Inspec
       end
 
       def resource_id
-        @objname || @objnamespace || @objtype || 'k8sobjects'
+        "#{@objapi}-#{@objtype}-#{@objname}-#{@obj_label_selector}" || 'k8sobjects'
       end
 
       private
