@@ -57,4 +57,8 @@ class K8sConfigMapTest < ResourceTest
   def annotations
     assert_equal(k8s_object.annotations, {})
   end
+
+  def test_resource_id
+    refute_nil(k8s_object.resource_id)
+  end
 end

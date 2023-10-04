@@ -75,4 +75,8 @@ class K8sRbacClusterRoleTest < ResourceTest
   def test_rules
     assert_equal([{ verbs: %w[get list watch] }], k8s_rbac_cluster_role.rules)
   end
+
+  def test_resource_id
+    refute_nil(k8s_rbac_cluster_role.resource_id)
+  end
 end

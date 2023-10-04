@@ -59,4 +59,8 @@ class K8sDaemonSetTest < ResourceTest
   def test_creation_timestamp
     assert_equal('2022-07-21T18:54:43Z', k8s_object.creation_timestamp)
   end
+
+  def test_resource_id
+    refute_nil(k8s_object.resource_id)
+  end
 end

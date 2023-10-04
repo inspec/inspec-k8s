@@ -47,4 +47,8 @@ class K8sApiResourcesTest < ResourceTest
   def test_categories
     assert_equal(['all'], k8s_api_resources.categories)
   end
+
+  def test_resource_id
+    refute_nil(k8s_api_resources.resource_id)
+  end
 end

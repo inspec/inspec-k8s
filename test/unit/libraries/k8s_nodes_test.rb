@@ -64,4 +64,8 @@ class K8sNodesTest < ResourceTest
   def test_annotations_has_given_values
     assert_includes(k8s_objects.annotations, { foo1: 'bar1' })
   end
+
+  def test_resource_id
+    refute_nil(k8s_objects.resource_id)
+  end
 end

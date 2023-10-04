@@ -108,6 +108,10 @@ class K8sContainersTest < ResourceTest
     assert_includes(k8s_objects.securityContexts.map(&:capabilities).map(&:add).flatten, 'NET_BIND_SERVICE')
   end
 
+  def test_resource_id
+    refute_nil(k8s_objects.resource_id)
+  end
+
   private
 
   def k8s_objects

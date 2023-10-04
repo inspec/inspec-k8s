@@ -68,4 +68,8 @@ class K8sObjectTest < ResourceTest
   def test_resource_id
     assert_equal('abcd1234', k8s_object.resource_id)
   end
+
+  def resource_id
+    retute_nil(k8s_object.resource_id)
+  end
 end

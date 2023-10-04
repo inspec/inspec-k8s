@@ -81,4 +81,8 @@ class K8sRbacClusterRolesTest < ResourceTest
   def test_rules
     assert_includes(k8s_rbac_cluster_roles.rules, { verbs: %w[get list watch] })
   end
+
+  def test_resource_id
+    refute_nil(k8s_rbac_cluster_roles.resource_id)
+  end
 end

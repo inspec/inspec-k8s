@@ -1,4 +1,5 @@
-# # frozen_string_literal: true
+# frozen_string_literal: true
+
 require 'train-kubernetes/kubectl_client'
 require 'inspec/resources/command'
 module Inspec
@@ -38,6 +39,12 @@ module Inspec
         sleep 0.1
         raise Inspec::Exceptions::ResourceFailed,
               "Command `#{command}` timed out after #{@timeout} seconds"
+      end
+
+      def resource_id
+        # Note: Hashing the command to hide any secrets
+        cmd_hash = Digest::SHA256.hexdigest(command)
+        "#{pod}-#{container}-#{cmd_hash}" || 'k8s_pod_exec'
       end
 
       private
