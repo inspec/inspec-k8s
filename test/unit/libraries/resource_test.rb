@@ -1,4 +1,5 @@
 require_relative '../../test_helper'
+require 'active_support'
 require 'active_support/core_ext/hash/indifferent_access'
 require_relative '../../shared/examples'
 
