@@ -52,7 +52,7 @@ end
 ## Preconditions
 
 - Inspec 3.7+ or 4.x+
-- InSpec K8s train/backend plugin [train-kubernetes](https://github.com/bgeesaman/train-kubernetes)
+- InSpec K8s train/backend plugin [train-kubernetes](https://github.com/inspec/train-kubernetes)
 
 ## Using with an Inspec Profile
 
