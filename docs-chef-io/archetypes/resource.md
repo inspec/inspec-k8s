@@ -14,7 +14,7 @@ platform = "k8s"
 
 Use the `{{ .Name }}` Chef InSpec audit resource to test the configuration of...
 
-## Installation
+## Install
 
 ## Syntax
 
@@ -60,4 +60,4 @@ end
 
 ## Matchers
 
-{{% inspec/inspec_matchers_link %}}
+{{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
