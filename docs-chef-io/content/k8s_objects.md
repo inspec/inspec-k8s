@@ -4,17 +4,13 @@ draft = false
 gh_repo = "inspec"
 platform = "k8s"
 
-[menu]
-[menu.inspec]
+[menu.k8s]
 title = "k8sobjects"
 identifier = "inspec/resources/k8s/K8s Objects"
 parent = "inspec/resources/k8s"
 +++
 
-
 Use the `k8sobjects` Chef InSpec audit resource to test the configuration of all K8s resources.
-
-## Installation
 
 ## Syntax
 
@@ -54,7 +50,7 @@ end
 
 ## Examples
 
-### Test to ensure kube-system, kube-public, and default namespaces exist
+Test to ensure kube-system, kube-public, and default namespaces exist:
 
 ```ruby
  describe k8sobjects(api: 'v1', type: 'namespaces', name: 'kube-system') do
@@ -62,7 +58,7 @@ end
 end
 ```
 
-### Test to ensure kube-system pods exist
+Test to ensure kube-system pods exist:
 
 ```ruby
 k8sobjects(api: 'v1', type: 'pods', namespace: 'kube-system', labelSelector: 'k8s-app=kube-proxy') do
@@ -72,4 +68,4 @@ end
 
 ## Matchers
 
-{{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
+{{< readfile file="content/reusable/md/inspec_matchers_link.md" >}}

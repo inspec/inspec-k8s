@@ -4,16 +4,13 @@ draft = false
 gh_repo = "inspec"
 platform = "k8s"
 
-[menu]
-[menu.inspec]
+[menu.k8s]
 title = "k8s_network_policies"
 identifier = "inspec/resources/k8s/K8s NetworkPolicies"
 parent = "inspec/resources/k8s"
 +++
 
 Use the `k8s_network_policies` Chef InSpec audit resource to test the configurations of all network policies in a namespace.
-
-## Installation
 
 ## Syntax
 
@@ -54,7 +51,7 @@ end
 
 ## Examples
 
-### Network policies for default namespace must exist
+Network policies for default namespace must exist:
 
 ```ruby
 describe k8s_network_policies do
@@ -63,7 +60,7 @@ describe k8s_network_policies do
 end
 ```
 
-### Network policies for specified namespace must exist and test its properties
+Network policies for specified namespace must exist and test its properties:
 
 ```ruby
 describe k8s_network_policies(namespace: 'NAMESPACE') do
@@ -81,4 +78,4 @@ end
 
 ## Matchers
 
-{{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
+{{< readfile file="content/reusable/md/inspec_matchers_link.md" >}}

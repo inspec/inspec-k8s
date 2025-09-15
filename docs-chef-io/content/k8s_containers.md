@@ -4,16 +4,13 @@ draft = false
 gh_repo = "inspec"
 platform = "k8s"
 
-[menu]
-[menu.inspec]
+[menu.k8s]
 title = "k8s_containers"
 identifier = "inspec/resources/k8s/K8s Containers"
 parent = "inspec/resources/k8s"
 +++
 
 Use the `k8s_containers` Chef InSpec audit resource to test the configurations of all Containers in a namespace.
-
-## Installation
 
 ## Syntax
 
@@ -62,7 +59,7 @@ end
 
 ## Examples
 
-### Containers for default namespace must exist
+Containers for default namespace must exist:
 
 ```ruby
  describe k8s_containers do
@@ -70,7 +67,7 @@ end
 end
 ```
 
-### Containers for specified namespace must exist
+Containers for specified namespace must exist:
 
 ```ruby
 describe k8s_containers(namespace: 'kube-system') do
@@ -78,7 +75,7 @@ describe k8s_containers(namespace: 'kube-system') do
 end
 ```
 
-### Containers with readOnlyRootFilesystem exists
+Containers with readOnlyRootFilesystem exists:
 
 ```ruby
 describe k8s_containers(namespace: 'kube-system').where{ securityContext && securityContext[:readOnlyRootFilesystem] == true } do 
@@ -89,4 +86,4 @@ end
 
 ## Matchers
 
-{{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
+{{< readfile file="content/reusable/md/inspec_matchers_link.md" >}}

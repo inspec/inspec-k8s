@@ -4,16 +4,13 @@ draft = false
 gh_repo = "inspec"
 platform = "k8s"
 
-[menu]
-[menu.inspec]
+[menu.k8s]
 title = "k8s_namespace"
 identifier = "inspec/resources/k8s/K8s Namespace"
 parent = "inspec/resources/k8s"
 +++
 
 Use the `k8s_namespace` Chef InSpec audit resource to test the configuration of a specific namespace.
-
-## Installation
 
 ## Syntax
 
@@ -53,7 +50,7 @@ end
 
 ## Examples
 
-### Specified namespace must exist and test its properties
+Specified namespace must exist and test its properties:
 
 ```ruby
 describe k8s_namespace(name: 'kube-node-lease') do
@@ -70,4 +67,4 @@ end
 
 ## Matchers
 
-{{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
+{{< readfile file="content/reusable/md/inspec_matchers_link.md" >}}

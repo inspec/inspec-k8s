@@ -4,16 +4,13 @@ draft = false
 gh_repo = "inspec"
 platform = "k8s"
 
-[menu]
-[menu.inspec]
+[menu.k8s]
 title = "k8s_exec_file"
 identifier = "inspec/resources/k8s/K8s Exec File"
 parent = "inspec/resources/k8s"
 +++
 
 Use the `k8s_exec_file` Chef InSpec audit resource to test the properties of all files within in a pod/container.
-
-## Installation
 
 ## Syntax
 
@@ -68,7 +65,7 @@ end
 
 ## Examples
 
-### Check if path exists and it is a file
+Check if path exists and it is a file:
 
 ```ruby
 describe k8s_exec_file(path: '/etc/e2scrub.conf', pod: 'shell-demo', namespace: 'default') do
@@ -77,7 +74,7 @@ describe k8s_exec_file(path: '/etc/e2scrub.conf', pod: 'shell-demo', namespace: 
 end
 ```
 
-### check if we have full rights on the file
+check if we have full rights on the file:
 
 ```ruby
 describe k8s_exec_file(path: '/etc/e2scrub.conf', pod: 'shell-demo', namespace: 'default') do
@@ -93,4 +90,4 @@ end
 
 ## Matchers
 
-{{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
+{{< readfile file="content/reusable/md/inspec_matchers_link.md" >}}

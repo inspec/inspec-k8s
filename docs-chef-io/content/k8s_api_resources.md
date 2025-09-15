@@ -4,16 +4,13 @@ draft = false
 gh_repo = "inspec"
 platform = "k8s"
 
-[menu]
-[menu.inspec]
+[menu.k8s]
 title = "k8s_api_resources"
 identifier = "inspec/resources/k8s/K8s API Resources"
 parent = "inspec/resources/k8s"
 +++
 
 Use the `k8s_api_resources` Chef InSpec audit resource to test the configurations of all resources under the specified API.
-
-## Installation
 
 ## Syntax
 
@@ -64,7 +61,7 @@ end
 
 ## Examples
 
-### Resources under default API must exist
+Resources under default API must exist:
 
 ```ruby
 describe k8s_api_resources do
@@ -73,7 +70,7 @@ describe k8s_api_resources do
 end
 ```
 
-### Resources under specified API must exist and test its properties
+Resources under specified API must exist and test its properties:
 
 ```ruby
 describe k8s_api_resources(api: 'apps/v1') do
@@ -91,4 +88,4 @@ end
 
 ## Matchers
 
-{{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
+{{< readfile file="content/reusable/md/inspec_matchers_link.md" >}}

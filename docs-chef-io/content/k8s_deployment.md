@@ -4,17 +4,13 @@ draft = false
 gh_repo = "inspec"
 platform = "k8s"
 
-[menu]
-[menu.inspec]
+[menu.k8s]
 title = "k8s_deployment"
 identifier = "inspec/resources/k8s/K8s Deployment"
 parent = "inspec/resources/k8s"
 +++
 
-
 Use the `k8s_deployment` Chef InSpec audit resource to test the configuration of a specific Deployment in the specified namespace.
-
-## Installation
 
 ## Syntax
 
@@ -63,7 +59,7 @@ end
 
 ## Examples
 
-### Deployment for default namespace must exist and test its properties
+Deployment for default namespace must exist and test its properties:
 
 ```ruby
 describe k8s_deployment(name: 'NEW-DEPLOYMENT') do
@@ -80,7 +76,7 @@ describe k8s_deployment(name: 'NEW-DEPLOYMENT') do
 end
 ```
 
-### Deployment for a specified namespace must exist
+Deployment for a specified namespace must exist:
 
 ```ruby
 describe k8s_deployment(namespace: 'kube-system', name: 'coredns') do
@@ -90,4 +86,4 @@ end
 
 ## Matchers
 
-{{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
+{{< readfile file="content/reusable/md/inspec_matchers_link.md" >}}

@@ -4,17 +4,13 @@ draft = false
 gh_repo = "inspec"
 platform = "k8s"
 
-[menu]
-[menu.inspec]
+[menu.k8s]
 title = "k8s_config_maps"
 identifier = "inspec/resources/k8s/K8s Config Maps"
 parent = "inspec/resources/k8s"
 +++
 
-
 Use the `k8s_config_maps` Chef InSpec audit resource to test all the Configuration Maps in a namespace.
-
-## Installation
 
 ## Syntax
 
@@ -51,7 +47,7 @@ end
 
 ## Examples
 
-### Configuration maps for default namespace must exist
+Configuration maps for default namespace must exist:
 
 ```ruby
  describe k8s_config_maps do
@@ -59,7 +55,7 @@ end
 end
 ```
 
-### Configuration maps must exists for specified namespace
+Configuration maps must exists for specified namespace:
 
 ```ruby
 describe k8s_config_maps(namespace: 'kube-system') do
@@ -69,4 +65,4 @@ end
 
 ## Matchers
 
-{{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
+{{< readfile file="content/reusable/md/inspec_matchers_link.md" >}}
