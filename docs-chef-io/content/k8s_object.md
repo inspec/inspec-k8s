@@ -1,8 +1,8 @@
 +++
 title = "k8sobject resource"
 draft = false
-gh_repo = "inspec"
-platform = "k8s"
+
+
 
 [menu]
   [menu.inspec]

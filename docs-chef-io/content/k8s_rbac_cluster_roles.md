@@ -1,8 +1,8 @@
 +++
 title = "k8s_rbac_cluster_roles resource"
 draft = false
-gh_repo = "inspec"
-platform = "k8s"
+
+
 
 [menu]
   [menu.inspec]
