@@ -1,19 +1,14 @@
 +++
 title = "k8s_jobs resource"
 draft = false
-gh_repo = "inspec"
-platform = "k8s"
 
-[menu]
-[menu.inspec]
+[menu.k8s]
 title = "k8s_jobs"
 identifier = "inspec/resources/k8s/K8s Jobs"
 parent = "inspec/resources/k8s"
 +++
 
 Use the `k8s_jobs` Chef InSpec audit resource to test the configurations of all Jobs in a namespace.
-
-## Installation
 
 ## Syntax
 
@@ -53,7 +48,7 @@ end
 
 ## Examples
 
-### Jobs for default namespace must exist and test its properties
+Jobs for default namespace must exist and test its properties:
 
 ```ruby
 describe k8s_jobs do
@@ -68,7 +63,7 @@ describe k8s_jobs do
 end
 ```
 
-### Jobs for specified namespace must exist
+Jobs for specified namespace must exist:
 
 ```ruby
 describe k8s_jobs(namespace: 'Namespace') do
@@ -79,4 +74,4 @@ end
 
 ## Matchers
 
-{{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
+{{< readfile file="content/reusable/md/inspec_matchers_link.md" >}}

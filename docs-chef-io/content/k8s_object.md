@@ -1,8 +1,8 @@
 +++
 title = "k8sobject resource"
 draft = false
-gh_repo = "inspec"
-platform = "k8s"
+
+
 
 [menu]
   [menu.inspec]
@@ -11,10 +11,7 @@ platform = "k8s"
     parent = "inspec/resources/k8s"
 +++
 
-
 Use the `k8sobject` Chef InSpec audit resource is a generic InSpec resource to test any Kubernetes object.
-
-## Installation
 
 ## Syntax
 
@@ -63,7 +60,7 @@ end
 
 ## Examples
 
-### Test to ensure kube-system, kube-public, and default namespaces exist
+Test to ensure kube-system, kube-public, and default namespaces exist:
 
 ```ruby
 describe k8sobject(api: 'v1', type: 'namespaces', name: 'kube-system') do
@@ -71,7 +68,7 @@ describe k8sobject(api: 'v1', type: 'namespaces', name: 'kube-system') do
 end
 ```
 
-### Test to ensure kube-system pods exist
+Test to ensure kube-system pods exist:
 
 ```ruby
 k8sobject(api: 'v1', type: 'pods', namespace: 'kube-system', labelSelector: 'k8s-app=kube-proxy') do
@@ -81,9 +78,9 @@ end
 
 ## Matchers
 
-{{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
+{{< readfile file="content/reusable/md/inspec_matchers_link.md" >}}
 
-### have_label
+have_label:
 
 The `have_label` matcher verifies if the specified key and value are present in the resource lables.
 
@@ -91,7 +88,7 @@ The `have_label` matcher verifies if the specified key and value are present in 
 it { should have_label('foo', 'bar') }
 ```
 
-### have_annotation
+have_annotation:
 
 The `have_annotation` matcher verifies if the specified key and value are present in the resource annotations.
 

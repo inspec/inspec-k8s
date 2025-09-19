@@ -1,20 +1,14 @@
 +++
 title = "k8s_daemon_set resource"
 draft = false
-gh_repo = "inspec"
-platform = "k8s"
 
-[menu]
-[menu.inspec]
+[menu.k8s]
 title = "k8s_daemon_set"
 identifier = "inspec/resources/k8s/K8s DaemonSet"
 parent = "inspec/resources/k8s"
 +++
 
-
 Use the `k8s_daemon_set` Chef InSpec audit resource to test the configuration of a specific DaemonSet in the specified namespace.
-
-## Installation
 
 ## Syntax
 
@@ -63,7 +57,7 @@ end
 
 ## Examples
 
-### DaemonSet for default namespace must exist and test its properties
+DaemonSet for default namespace must exist and test its properties:
 
 ```ruby
 describe k8s_daemon_set(name: 'fluentd-elasticsearch') do
@@ -79,7 +73,7 @@ describe k8s_daemon_set(name: 'fluentd-elasticsearch') do
 end
 ```
 
-### DaemonSet for a specified namespace must exist
+DaemonSet for a specified namespace must exist:
 
 ```ruby
 describe k8s_daemon_set(namespace: 'kube-system', name: 'fluentd-elasticsearch') do
@@ -89,4 +83,4 @@ end
 
 ## Matchers
 
-{{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
+{{< readfile file="content/reusable/md/inspec_matchers_link.md" >}}

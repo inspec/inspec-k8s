@@ -1,20 +1,14 @@
 +++
 title = "k8s_pod resource"
 draft = false
-gh_repo = "inspec"
-platform = "k8s"
 
-[menu]
-[menu.inspec]
+[menu.k8s]
 title = "k8s_pod"
 identifier = "inspec/resources/k8s/K8s Pod"
 parent = "inspec/resources/k8s"
 +++
 
-
 Use the `k8s_pod` Chef InSpec audit resource to test the configuration of a specific Pod in the specified namespace.
-
-## Installation
 
 ## Syntax
 
@@ -51,7 +45,7 @@ end
 
 ## Examples
 
-### Pod for default namespace must exist
+Pod for default namespace must exist:
 
 ```ruby
  describe k8s_pod(name: 'NAME') do
@@ -59,7 +53,7 @@ end
 end
 ```
 
-### Pod for a specified namespace must exist
+Pod for a specified namespace must exist:
 
 ```ruby
 describe k8s_pod(namespace: 'NAMESPACE', name: 'NAME') do
@@ -69,4 +63,4 @@ end
 
 ## Matchers
 
-{{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
+{{< readfile file="content/reusable/md/inspec_matchers_link.md" >}}

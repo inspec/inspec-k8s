@@ -1,19 +1,14 @@
 +++
 title = "k8s_cronjobs resource"
 draft = false
-gh_repo = "inspec"
-platform = "k8s"
 
-[menu]
-[menu.inspec]
+[menu.k8s]
 title = "k8s_cronjobs"
 identifier = "inspec/resources/k8s/K8s Cronjobs"
 parent = "inspec/resources/k8s"
 +++
 
 Use the `k8s_cronjobs` Chef InSpec audit resource to test the configurations of all CronJobs in a namespace.
-
-## Installation
 
 ## Syntax
 
@@ -53,7 +48,7 @@ end
 
 ## Examples
 
-### Cronjobs for default namespace must exist and test its properties
+Cronjobs for default namespace must exist and test its properties:
 
 ```ruby
 describe k8s_cronjobs do
@@ -68,7 +63,7 @@ describe k8s_cronjobs do
 end
 ```
 
-### Cronjobs for specified namespace must exist
+Cronjobs for specified namespace must exist:
 
 ```ruby
 describe k8s_cronjobs(namespace: 'Namespace') do
@@ -79,4 +74,4 @@ end
 
 ## Matchers
 
-{{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
+{{< readfile file="content/reusable/md/inspec_matchers_link.md" >}}

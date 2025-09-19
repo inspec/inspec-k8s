@@ -1,19 +1,14 @@
 +++
 title = "k8s_daemon_sets resource"
 draft = false
-gh_repo = "inspec"
-platform = "k8s"
 
-[menu]
-[menu.inspec]
+[menu.k8s]
 title = "k8s_daemon_sets"
 identifier = "inspec/resources/k8s/K8s DaemonSets"
 parent = "inspec/resources/k8s"
 +++
 
 Use the `k8s_daemon_sets` Chef InSpec audit resource to test the configurations of all DaemonSets in a namespace.
-
-## Installation
 
 ## Syntax
 
@@ -53,7 +48,7 @@ end
 
 ## Examples
 
-### DaemonSets for default namespace must exist
+DaemonSets for default namespace must exist:
 
 ```ruby
 describe k8s_daemon_sets do
@@ -62,7 +57,7 @@ describe k8s_daemon_sets do
 end
 ```
 
-### DaemonSets for specified namespace must exist and test its properties
+DaemonSets for specified namespace must exist and test its properties:
 
 ```ruby
 describe k8s_daemon_sets(namespace: 'kube-system') do
@@ -79,4 +74,4 @@ end
 
 ## Matchers
 
-{{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
+{{< readfile file="content/reusable/md/inspec_matchers_link.md" >}}

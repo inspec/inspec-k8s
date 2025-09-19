@@ -1,19 +1,14 @@
 +++
 title = "k8s_namespaces resource"
 draft = false
-gh_repo = "inspec"
-platform = "k8s"
 
-[menu]
-[menu.inspec]
+[menu.k8s]
 title = "k8s_namespaces"
 identifier = "inspec/resources/k8s/K8s Namespaces"
 parent = "inspec/resources/k8s"
 +++
 
 Use the `k8s_namespaces` Chef InSpec audit resource to test the configurations of all namespaces.
-
-## Installation
 
 ## Syntax
 
@@ -43,7 +38,7 @@ end
 
 ## Examples
 
-### Namespaces must exist and test their properties
+Namespaces must exist and test their properties:
 
 ```ruby
 describe k8s_namespaces do
@@ -58,4 +53,4 @@ end
 
 ## Matchers
 
-{{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
+{{< readfile file="content/reusable/md/inspec_matchers_link.md" >}}

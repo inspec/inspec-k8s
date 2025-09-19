@@ -1,8 +1,8 @@
 +++
 title = "k8s_rbac_cluster_role resource"
 draft = false
-gh_repo = "inspec"
-platform = "k8s"
+
+
 
 [menu]
   [menu.inspec]
@@ -11,10 +11,7 @@ platform = "k8s"
     parent = "inspec/resources/k8s"
 +++
 
-
 Use the `k8s_rbac_cluster_role` Chef InSpec audit resource to test the Role-based access control (RBAC) cluster role settings.
-
-## Installation
 
 ## Syntax
 
@@ -63,7 +60,7 @@ end
 
 ## Examples
 
-### Test to verify that the RBAC cluster role with the specified name exists
+Test to verify that the RBAC cluster role with the specified name exists:
 
 ```ruby
 describe k8s_rbac_cluster_role(name: "CLUSTER_ROLE_NAME") do
@@ -71,7 +68,7 @@ describe k8s_rbac_cluster_role(name: "CLUSTER_ROLE_NAME") do
 end
 ```
 
-### Test to verify rules set for the specified cluster role
+Test to verify rules set for the specified cluster role:
 
 ```ruby
 describe k8s_rbac_cluster_role(name: "pod-reader") do
@@ -80,7 +77,7 @@ describe k8s_rbac_cluster_role(name: "pod-reader") do
 end
 ```
 
-### Test to verify aggregation rule is not empty and cluster role selectors have the specified value
+Test to verify aggregation rule is not empty and cluster role selectors have the specified value:
 
 ```ruby
 describe k8s_rbac_cluster_role(name: "monitoring") do
@@ -91,4 +88,4 @@ end
 
 ## Matchers
 
-{{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
+{{< readfile file="content/reusable/md/inspec_matchers_link.md" >}}

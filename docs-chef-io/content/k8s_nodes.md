@@ -1,19 +1,14 @@
 +++
 title = "k8s_nodes resource"
 draft = false
-gh_repo = "inspec"
-platform = "k8s"
 
-[menu]
-[menu.inspec]
+[menu.k8s]
 title = "k8s_nodes"
 identifier = "inspec/resources/k8s/K8s Nodes"
 parent = "inspec/resources/k8s"
 +++
 
 Use the `k8s_nodes` Chef InSpec audit resource to test the configuration of all nodes.
-
-## Installation
 
 ## Syntax
 
@@ -39,7 +34,7 @@ end
 
 ## Examples
 
-### Test to verify nodes include a node with a specified name and UID
+Test to verify nodes include a node with a specified name and UID:
 
 ```ruby
  describe k8s_nodes do
@@ -51,4 +46,4 @@ end
 
 ## Matchers
 
-{{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
+{{< readfile file="content/reusable/md/inspec_matchers_link.md" >}}
