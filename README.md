@@ -70,3 +70,7 @@ If you run into issues installing via `inspec plugin install train-kubernetes`, 
 ## Maintainers
 
 Currently maintained by Chef Software, Inc. Originally created by [Brad Geesaman](https://github.com/bgeesaman).
+
+# Copyright
+
+See [COPYRIGHT.md](./COPYRIGHT.md).
