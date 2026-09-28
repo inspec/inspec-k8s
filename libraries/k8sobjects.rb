@@ -3,6 +3,7 @@
 require 'k8s_backend'
 require 'active_support'
 require 'active_support/core_ext/string'
+require 'active_support/core_ext/object/blank'
 
 module Inspec
   module Resources
