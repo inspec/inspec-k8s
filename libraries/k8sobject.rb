@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'k8s_backend'
-require 'pry'
 require 'active_support'
 require 'active_support/core_ext/module/delegation'
 
